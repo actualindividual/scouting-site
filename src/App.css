@@ -1,1 +1,17 @@
-/* not working on this right now */
+.App {
+    text-align: center;
+    align-content: center;
+}
+.red-btn {
+    background-color: red;
+    height: 200;
+    width: 300;
+}
+.blue-btn {
+    background-color: blue;
+    height: 200;
+    width: 300;
+}
+body {
+    text-align: center;
+}
