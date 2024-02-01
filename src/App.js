@@ -1,12 +1,19 @@
+// This code is not very good but it works*
+// * sometimes if it feels like it
+
 import './App.css';
 //import { useState } from 'react';
 
 let alliance;
+let team;
+let matchnum = 0;
+let ranking_points = 0;
 let autoamp = 0;
 let autospeaker = 0;
 let teleamp = 0;
 let telespeaker_a = 0;
 let telespeaker_u = 0;
+
 
 function redbtnfunc() {
   alliance = "red";  
@@ -60,6 +67,55 @@ function button_handler10() {
   telespeaker_a = telespeaker_a - 1;
   console.log(telespeaker_a);
 }
+function button_handler11() {
+  ranking_points = ranking_points + 1;
+  console.log(ranking_points);
+}
+function button_handler12() {
+  ranking_points = ranking_points - 1;
+  console.log(ranking_points);
+}
+
+function submitHandler() {
+  let team = document.getElementById('team-input');
+  let match = document.getElementById('match-input');
+}
+
+// used to be in a seperate file but that did not work
+function handleSubmit(e) {
+  e.preventDefault();
+  fetch('address here ghhghghghhgg', {
+     method: 'POST',
+     // update backend plz
+     body: JSON.stringify({
+        team: team,
+        matchNumber: matchnum,
+        alliance: alliance,
+        autoAmp: autoamp,
+        autoSpeaker: autospeaker,
+        teleAmp: teleamp,
+        teleSpeakerUnamp: telespeaker_u,
+        teleSpeakerAmp: telespeaker_a,
+        rankingPoints: ranking_points,
+        //other stuff goes here
+     }),
+     headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+     },
+  })
+     //.then((res) => res.json())
+     //.then((post) => {
+      //  setPosts((posts) => [post, ...posts]);
+      //  setTitle('');
+      //  setBody('');
+     //})
+     .catch((err) => {
+        console.log(err.message);
+     });
+}
+
+
+
 
 function App() {
   //const [autoamp, setAutoAmp] = useState(0);
@@ -67,14 +123,14 @@ function App() {
   //const [teleamp, setTeleAmp] = useState(0);
   //const [telespeaker_u, setTeleSpeakerU] = useState(0);
   //const [telespeaker_a, setTeleSpeakerA] = useState(0);
-
+  //const [key, setKey] = useState(0);
   return (
       <div class='container'>
         <h2 class="basicinfo-text">Basic Info</h2>
         <h3 class='matchnumber-text'>Match Number</h3>
-          <input type='text'></input>
+          <input type='text' id='match-input'></input>
         <h3 class='tn-text'>Team Number</h3>
-          <input type='text'></input>
+          <input type='text' id='team-input'></input>
         <h3 class='alliance-text'>Alliance</h3>
           <button onClick={redbtnfunc} className='red-btn'>Red</button>
           <button onClick={bluebtnfunc} className='blue-btn'>Blue</button>
@@ -106,9 +162,14 @@ function App() {
           <button onClick={button_handler10} class='normal_button' id='telespeaker_a-'>-</button>
         <h3>Coopertition Point</h3>
         <input class="checkbox" type="checkbox"/>
+        <h3 class='rp-text1'>Ranking Points</h3>
+        <b id='rp-text2'>{ranking_points}</b> <br></br><br></br>
+          <button onClick={button_handler11} class='normal_button' id='rp+'>+</button>
+          <button onClick={button_handler12} class='normal_button' id='rp-'>-</button>
         <br></br>
         <br></br>
-        <input type='submit'/>
+        <input onclick={submitHandler} type='submit'/>
+        <button onclick={handleSubmit}>super cool temporary button</button>
         <br></br>
         <br></br>
     </div>
