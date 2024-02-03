@@ -1,6 +1,3 @@
-// This code is not very good but it works*
-// * sometimes if it feels like it
-
 import './App.css';
 //import { useState } from 'react';
 
@@ -114,26 +111,41 @@ function handleSubmit(e) {
      });
 }
 
+// rewriting the entire app in react components why did i not do this originaly aaaa
 
+function RedButton() {
+  return(
+    <button onClick={redbtnfunc} class='red-btn'>
+      Red
+    </button>
+  );
+}
+function BlueButton() {
+  return(
+    <button onClick={bluebtnfunc} class='blue-btn'>
+      Blue
+    </button>
+  );
+}
+function MatchNumInput() {
+  return (
+    <input type='text'>
 
+    </input>
+  )
+}
 
 function App() {
-  //const [autoamp, setAutoAmp] = useState(0);
-  //const [autospeaker, setAutoSpeaker] = useState(0);
-  //const [teleamp, setTeleAmp] = useState(0);
-  //const [telespeaker_u, setTeleSpeakerU] = useState(0);
-  //const [telespeaker_a, setTeleSpeakerA] = useState(0);
-  //const [key, setKey] = useState(0);
   return (
       <div class='container'>
         <h2 class="basicinfo-text">Basic Info</h2>
         <h3 class='matchnumber-text'>Match Number</h3>
-          <input type='text' id='match-input'></input>
+          <MatchNumInput />
         <h3 class='tn-text'>Team Number</h3>
           <input type='text' id='team-input'></input>
         <h3 class='alliance-text'>Alliance</h3>
-          <button onClick={redbtnfunc} className='red-btn'>Red</button>
-          <button onClick={bluebtnfunc} className='blue-btn'>Blue</button>
+          <RedButton />
+          <BlueButton />
 
       <h2 class='auto-points-text'>Auto Points</h2>
         <h3 class='left-start'>Robot left start</h3>
