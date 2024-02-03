@@ -21,10 +21,8 @@ function bluebtnfunc() {
   console.log(alliance);
 }
 
-//naming button handlers like this is probably not good practice
-//but it works so...
-
-//for some reason using normal incrementing isn't working...
+// Old button handler functions from before full* conversion to react components,
+// kept them for reference mainly
 
 /* function button_handler1() {
   autoamp = autoamp + 1;
@@ -33,7 +31,7 @@ function bluebtnfunc() {
 function button_handler2() {
   autoamp = autoamp - 1;
   console.log(autoamp);
-} */
+} 
 function button_handler3() {
   autospeaker = autospeaker + 1;
   console.log(autospeaker);
@@ -73,7 +71,7 @@ function button_handler11() {
 function button_handler12() {
   ranking_points = ranking_points - 1;
   console.log(ranking_points);
-}
+} */
 
 function submitHandler() {
   let team = document.getElementById('team-input');
@@ -83,7 +81,7 @@ function submitHandler() {
 // used to be in a seperate file but that did not work
 function handleSubmit(e) {
   e.preventDefault();
-  fetch('address here ghhghghghhgg', {
+  fetch('http://localhost:65535', {
      method: 'POST',
      // update backend plz
      body: JSON.stringify({
@@ -147,13 +145,7 @@ function LeftStartCb() {
     </input>
   );
 }
-/*function AutoAmpScoreDisp() {
-  return(
-  <b id='autoamptext'>
-    {autoamp}
-  </b>
-  );
-}*/
+
 function AutoAmpComponent() {
   const [autoamp, setAutoamp] = useState(0);
   return(
@@ -170,6 +162,92 @@ function AutoAmpComponent() {
     </div>
   );
 }
+
+function AutoSpeakerComponent() {
+  const [autospeaker, setAutospeaker] = useState(0);
+  return(
+    <div>
+      <b id='autospeakerdisp'>
+        {autospeaker}
+      </b><br></br><br></br>
+      <button onClick={() => setAutospeaker(autospeaker + 1)} class='normal-button'>
+        +
+      </button>
+      <button onClick={() => setAutospeaker(autospeaker - 1)} class='normal-button'>
+        -
+      </button>
+    </div>
+  );
+}
+
+function TeleAmpComponent() {
+  const [teleamp, setTeleamp] = useState(0);
+  return(
+    <div>
+      <b id='teleampdisp'>
+        {teleamp}
+      </b><br></br><br></br>
+      <button onClick={() => setTeleamp(teleamp + 1)} class='normal-button'>
+        +
+      </button>
+      <button onClick={() => setTeleamp(teleamp - 1)} class='normal-button'>
+        -
+      </button>
+    </div>
+  );
+}
+
+function TeleSpeakerUnamplifiedComponent() {
+  const [telespeaker_unamplified, setTelespeakerUnamplified] = useState(0);
+  return(
+    <div>
+      <b id='telespeakerunampdisp'>
+        {telespeaker_unamplified}
+      </b><br></br><br></br>
+      <button onClick={() => setTelespeakerUnamplified(telespeaker_unamplified + 1)} class='normal-button'>
+        +
+      </button>
+      <button onClick={() => setTelespeakerUnamplified(telespeaker_unamplified - 1)} class='normal-button'>
+        -
+      </button>
+    </div>
+  );
+}
+
+function TeleSpeakerAmplifiedComponent() {
+  const [telespeaker_amplified, setTelespeakerAmplified] = useState(0);
+  return(
+    <div>
+      <b id='telespeakerampdisp'>
+        {telespeaker_amplified}
+      </b><br></br><br></br>
+      <button onClick={() => setTelespeakerAmplified(telespeaker_amplified + 1)} class='normal-button'>
+        +
+      </button>
+      <button onClick={() => setTelespeakerAmplified(telespeaker_amplified - 1)} class='normal-button'>
+        -
+      </button>
+    </div>
+  );
+}
+
+// Cooperition point checkbox handler. Probably not the best way to do this but it works
+function CoopCheckboxComponent() {
+  const [coopertition_point, setCoopPoint] = useState(false);
+  return (
+  <input
+  type="checkbox"
+  value={coopertition_point}
+  onChange={handleCoopChange}
+  id="coop-checkbox"
+  name="subscribe" 
+  />
+  );
+}
+function handleCoopChange() {
+
+}
+
 
 function App() {
   return (
@@ -191,25 +269,17 @@ function App() {
         <h3 class='auto-amp-text'>Amp score</h3>
             <AutoAmpComponent />
         <h3 class='auto-speaker-text'>Speaker score</h3>
-            <b id='autospeakertext'>{autospeaker}</b> <br></br><br></br>
-          <button onClick={button_handler3} class='normal-button' id='autospeaker+'>+</button>
-          <button onClick={button_handler4} class='normal-button' id='autospeaker-'>-</button>
+            <AutoSpeakerComponent />
 
       <h2 class='teleop-points-text'>Teleop Points</h2>
         <h3 class='teleop-amp-text'>Amp score</h3>
-            <b id='teleamptext'>{teleamp}</b> <br></br><br></br>
-          <button onClick={button_handler5} class='normal-button' id='teleamp+'>+</button>
-          <button onClick={button_handler6} class='normal-button' id='teleamp-'>-</button>
+            <TeleAmpComponent />
         <h3 class='teleop-speaker-text1'>Unamplified Speaker Score</h3>
-            <b id='teleamptext1'>{telespeaker_u}</b> <br></br><br></br>
-          <button onClick={button_handler7} class='normal-button' id='telespeaker_u+'>+</button>
-          <button onClick={button_handler8} class='normal-button' id='telespeaker_u-'>-</button>
+            <TeleSpeakerUnamplifiedComponent />
         <h3 class='teleop-speaker-text2'>Amplified Speaker Score</h3>
-            <b id='teleamptext2'>{telespeaker_a}</b> <br></br><br></br>
-          <button onClick={button_handler9} class='normal_button' id='telespeaker_a+'>+</button>
-          <button onClick={button_handler10} class='normal_button' id='telespeaker_a-'>-</button>
+            <TeleSpeakerAmplifiedComponent />
         <h3>Coopertition Point</h3>
-        <input class="checkbox" type="checkbox"/>
+        <input class="coopertition_checkbox" type="checkbox"/>
         <h3 class='rp-text1'>Ranking Points</h3>
         <b id='rp-text2'>{ranking_points}</b> <br></br><br></br>
           <button onClick={button_handler11} class='normal_button' id='rp+'>+</button>
@@ -217,7 +287,7 @@ function App() {
         <br></br>
         <br></br>
         <input onClick={submitHandler} type='submit'/>
-        <button onClick={handleSubmit}>super cool temporary button</button>
+        <button onClick={handleSubmit}>super cool temporary button click instead of submit</button>
         <br></br>
         <br></br>
     </div>
