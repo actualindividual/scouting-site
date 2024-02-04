@@ -1,5 +1,5 @@
 import './App.css';
-import { Text } from 'react-native-web';
+//import { Text } from 'react-native-web';
 import { useState } from 'react';
 
 let alliance;
@@ -231,23 +231,42 @@ function TeleSpeakerAmplifiedComponent() {
   );
 }
 
-// Cooperition point checkbox handler. Probably not the best way to do this but it works
+// Cooperition point checkbox handler. Probably not the best way to do this.
 function CoopCheckboxComponent() {
   const [coopertition_point, setCoopPoint] = useState(false);
   return (
   <input
   type="checkbox"
   value={coopertition_point}
-  onChange={handleCoopChange}
-  id="coop-checkbox"
-  name="subscribe" 
+  onChange={e => handleCoopChange}
+  id="coop-checkbox" 
   />
   );
+  function handleCoopChange(e) {
+    if (e.target.checked === true) {
+      setCoopPoint(true);
+    } else {
+      setCoopPoint(false);
+    }
+  }
 }
-function handleCoopChange() {
 
+function RankingPointsComponent() {
+  const [ranking_points, setRankingPoints] = useState(0);
+  return(
+    <div>
+      <b id='rankingpointsdisp'>
+        {ranking_points}
+      </b><br></br><br></br>
+      <button onClick={() => setRankingPoints(ranking_points + 1)} class='normal-button'>
+        +
+      </button>
+      <button onClick={() => setRankingPoints(ranking_points - 1)} class='normal-button'>
+        -
+      </button>
+    </div>
+  );
 }
-
 
 function App() {
   return (
@@ -279,11 +298,9 @@ function App() {
         <h3 class='teleop-speaker-text2'>Amplified Speaker Score</h3>
             <TeleSpeakerAmplifiedComponent />
         <h3>Coopertition Point</h3>
-        <input class="coopertition_checkbox" type="checkbox"/>
+            <CoopCheckboxComponent />
         <h3 class='rp-text1'>Ranking Points</h3>
-        <b id='rp-text2'>{ranking_points}</b> <br></br><br></br>
-          <button onClick={button_handler11} class='normal_button' id='rp+'>+</button>
-          <button onClick={button_handler12} class='normal_button' id='rp-'>-</button>
+            <RankingPointsComponent />
         <br></br>
         <br></br>
         <input onClick={submitHandler} type='submit'/>
