@@ -1,15 +1,24 @@
 import './App.css';
-import { Text } from 'react-native-web';
 import { useState } from 'react';
 
+// These are all collected from user through forms. If they aren't declared here the app throws an error
 let alliance;
 let team;
+let left_zone;
+let drops;
+let scoutname;
+let parked;
+let climbed;
+let harmony;
+let trap;
+// Do these need to be declared as integers as opposed to as any's? IDK...
+let autoamp = 0;
 let matchnum = 0;
-let ranking_points = 0;
 let autospeaker = 0;
 let teleamp = 0;
 let telespeaker_a = 0;
 let telespeaker_u = 0;
+
 
 
 function redbtnfunc() {
@@ -21,97 +30,14 @@ function bluebtnfunc() {
   console.log(alliance);
 }
 
-// Old button handler functions from before full* conversion to react components,
-// kept them for reference mainly
-
-/* function button_handler1() {
-  autoamp = autoamp + 1;
-  console.log(autoamp);
-} 
-function button_handler2() {
-  autoamp = autoamp - 1;
-  console.log(autoamp);
-} 
-function button_handler3() {
-  autospeaker = autospeaker + 1;
-  console.log(autospeaker);
-}
-function button_handler4() {
-  autospeaker = autospeaker - 1;
-  console.log(autospeaker);
-}
-function button_handler5() {
-  teleamp = teleamp + 1;
-  console.log(teleamp);
-}
-function button_handler6() {
-  teleamp = teleamp - 1;
-  console.log(teleamp);
-}
-function button_handler7() {
-  telespeaker_u = telespeaker_u + 1;
-  console.log(telespeaker_u);
-}
-function button_handler8() {
-  telespeaker_u = telespeaker_u - 1;
-  console.log(telespeaker_u); 
-}
-function button_handler9() {
-  telespeaker_a = telespeaker_a + 1;
-  console.log(telespeaker_a);
-}
-function button_handler10() {
-  telespeaker_a = telespeaker_a - 1;
-  console.log(telespeaker_a);
-}
-function button_handler11() {
-  ranking_points = ranking_points + 1;
-  console.log(ranking_points);
-}
-function button_handler12() {
-  ranking_points = ranking_points - 1;
-  console.log(ranking_points);
-} */
+// Old (bad) button handler code is no more
 
 function submitHandler() {
   let team = document.getElementById('team-input');
+  console.log("jaskjaskjlaskjlaskjl");
   let match = document.getElementById('match-input');
+  let scoutname = document.getElementById('scoutname-input');
 }
-
-// used to be in a seperate file but that did not work
-function handleSubmit(e) {
-  e.preventDefault();
-  fetch('http://localhost:65535', {
-     method: 'POST',
-     // update backend plz
-     body: JSON.stringify({
-        team: team,
-        matchNumber: matchnum,
-        alliance: alliance,
-        //autoAmp: autoamp,
-        autoSpeaker: autospeaker,
-        teleAmp: teleamp,
-        teleSpeakerUnamp: telespeaker_u,
-        teleSpeakerAmp: telespeaker_a,
-        rankingPoints: ranking_points,
-        //other stuff goes here
-     }),
-     headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-     },
-  })
-     //.then((res) => res.json())
-     //.then((post) => {
-      //  setPosts((posts) => [post, ...posts]);
-      //  setTitle('');
-      //  setBody('');
-     //})
-     .catch((err) => {
-        console.log(err.message);
-     });
-}
-
-// rewriting the entire app in react components why did i not do this originaly aaaa
 
 function RedButton() {
   return(
@@ -127,24 +53,26 @@ function BlueButton() {
     </button>
   );
 }
+function ScoutNameInput() {
+  return (
+    <input type='text' id="scoutname-input">
+    </input>
+  );
+}
 function MatchNumInput() {
   return (
     <input type='text'>
     </input>
   );
 }
+
 function TeamNumInput() {
   return (
     <input type='text'>
     </input>
   );
 }
-function LeftStartCb() {
-  return(
-    <input class="left-start-cb" type='checkbox'>
-    </input>
-  );
-}
+
 
 function AutoAmpComponent() {
   const [autoamp, setAutoamp] = useState(0);
@@ -178,6 +106,23 @@ function AutoSpeakerComponent() {
       </button>
     </div>
   );
+}
+
+function LeftZoneComponent() {
+  const [left_zone, setLeftZone] = useState(Boolean);
+  return (
+  <input
+  type="checkbox"
+  onChange={handleLeftZone}
+  value={left_zone}
+  id="zone-checkbox"
+  name="lz-cb"
+  />
+  );
+  function handleLeftZone() {
+    if (document.getElementById('zone-checkbox').value === true) {setLeftZone(true);}
+    else if (document.getElementById('zone-checkbox').value === false) {setLeftZone(false);}
+  }
 }
 
 function TeleAmpComponent() {
@@ -231,30 +176,134 @@ function TeleSpeakerAmplifiedComponent() {
   );
 }
 
-// Cooperition point checkbox handler. Probably not the best way to do this but it works
-function CoopCheckboxComponent() {
-  const [coopertition_point, setCoopPoint] = useState(false);
+function DropsComponent() {
+  const [drops, setDrops] = useState(0);
+  return(
+    <div>
+      <b id='dropsdisp'>
+        {drops}
+      </b><br></br><br></br>
+      <button onClick={() => setDrops(drops + 1)} class='normal-button'>
+        +
+      </button>
+      <button onClick={() => setDrops(drops - 1)} class='normal-button'>
+        -
+      </button>
+    </div>
+  );
+}
+
+function ClimbedComponent() {
+  const [climbed, setClimbed] = useState(Boolean);
   return (
   <input
   type="checkbox"
-  value={coopertition_point}
-  onChange={handleCoopChange}
-  id="coop-checkbox"
-  name="subscribe" 
+  onChange={handleClimbed}
+  value={climbed}
+  id="climbed-checkbox"
+  name="climb-cb"
   />
   );
+  function handleClimbed() {
+    if (document.getElementById('climbed-checkbox').value === true) {setClimbed(true);}
+    else if (document.getElementById('climbed-checkbox').value === false) {setClimbed(false);}
+  }
 }
-function handleCoopChange() {
 
+function ParkedComponent() {
+  const [parked, setParked] = useState(Boolean);
+  return (
+  <input
+  type="checkbox"
+  onChange={handleParked}
+  value={parked}
+  id="parked-checkbox"
+  name="park-box"
+  />
+  );
+  function handleParked() {
+    if (document.getElementById('parked-checkbox').value === true) {setParked(true);}
+    else if (document.getElementById('parked-checkbox').value === false) {setParked(false);}
+  }
 }
 
+function HarmonyComponent() {
+  const [harmony, setHarmony] = useState(Boolean);
+  return (
+  <input
+  type="checkbox"
+  onChange={handleHarmony}
+  value={harmony}
+  id="harmony-checkbox"
+  name="harm-box"
+  />
+  );
+  function handleHarmony() {
+    if (document.getElementById('harmony-checkbox').value === true) {setHarmony(true);}
+    else if (document.getElementById('harmony-checkbox').value === false) {setHarmony(false);}
+  }
+}
+
+function TrapComponent() {
+  const [trap, setTrap] = useState(0);
+  return(
+    <div>
+      <b id='trapdisp'>
+        {trap}
+      </b><br></br><br></br>
+      <button onClick={() => setTrap(trap + 1)} class='normal-button'>
+        +
+      </button>
+      <button onClick={() => setTrap(trap - 1)} class='normal-button'>
+        -
+      </button>
+    </div>
+  );
+}
+
+// used to be in a seperate file but that did not work
+function handleSubmit(e) {
+  e.preventDefault();
+  fetch('http://localhost:65535', {
+     method: 'POST',
+     body: JSON.stringify({
+        scoutname: scoutname,  
+        team: team,
+        matchNumber: matchnum,
+        alliance: alliance,
+        autoAmpPoints: autoamp,
+        autoSpeakerPoints: autospeaker,
+        autoLeftZone: left_zone,
+        teleAmpPoints: teleamp,
+        teleSpeakerPoints: telespeaker_u,
+        teleSpeakerAmplifiedNotes: telespeaker_a,
+        drops: drops,
+        climbed: climbed,
+        parked: parked,
+        harmony: harmony,
+        trap: trap
+     }),
+     headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+     },
+  })
+     //.then((res) => res.json())
+     //.then((post) => {
+      //  setPosts((posts) => [post, ...posts]);
+      //  setTitle('');
+      //  setBody('');
+     //})
+     .catch((err) => {
+        console.log(err.message);
+     });
+}
 
 function App() {
   return (
-
-    
       <div class='container'>
         <h2 class="basicinfo-text">Basic Info</h2>
+        <h3 class='scout-name'>Scout name</h3>
+          <ScoutNameInput />
         <h3 class='matchnumber-text'>Match Number</h3>
           <MatchNumInput />
         <h3 class='tn-text'>Team Number</h3>
@@ -264,12 +313,12 @@ function App() {
           <BlueButton />
 
       <h2 class='auto-points-text'>Auto Points</h2>
-        <h3 class='left-start'>Robot left start</h3>
-          <LeftStartCb />
         <h3 class='auto-amp-text'>Amp score</h3>
             <AutoAmpComponent />
         <h3 class='auto-speaker-text'>Speaker score</h3>
             <AutoSpeakerComponent />
+        <h3 class='left-zone-text'>Left zone</h3>
+            <LeftZoneComponent />
 
       <h2 class='teleop-points-text'>Teleop Points</h2>
         <h3 class='teleop-amp-text'>Amp score</h3>
@@ -278,12 +327,16 @@ function App() {
             <TeleSpeakerUnamplifiedComponent />
         <h3 class='teleop-speaker-text2'>Amplified Speaker Score</h3>
             <TeleSpeakerAmplifiedComponent />
-        <h3>Coopertition Point</h3>
-        <input class="coopertition_checkbox" type="checkbox"/>
-        <h3 class='rp-text1'>Ranking Points</h3>
-        <b id='rp-text2'>{ranking_points}</b> <br></br><br></br>
-          <button onClick={button_handler11} class='normal_button' id='rp+'>+</button>
-          <button onClick={button_handler12} class='normal_button' id='rp-'>-</button>
+        <h3 class='trapscore-text'>Trap score</h3>
+            <TrapComponent />
+        <h3 class='drops-text'>Number of times bot dropped note</h3>
+            <DropsComponent />
+        <h3 class='climbed-text'>Robot climbed</h3>
+            <ClimbedComponent />
+        <h3 class='parked-text'>Robot parked</h3>
+            <ParkedComponent />
+        <h3 class='harmony-text'>Robot got harmony</h3>
+            <HarmonyComponent />
         <br></br>
         <br></br>
         <input onClick={submitHandler} type='submit'/>
