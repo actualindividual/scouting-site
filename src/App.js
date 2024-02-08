@@ -1,5 +1,4 @@
 import './App.css';
-import { Text } from 'react-native-web';
 import { useState } from 'react';
 
 // These are all collected from user through forms. If they aren't declared here the app throws an error
@@ -177,23 +176,127 @@ function TeleSpeakerAmplifiedComponent() {
   );
 }
 
-// Cooperition point checkbox handler. Probably not the best way to do this but it works
-function CoopCheckboxComponent() {
-  const [coopertition_point, setCoopPoint] = useState(false);
+function TrapComponent() {
+  const [trap, setTrap] = useState(0);
+  return(
+    <div>
+      <b id='trapdisp'>
+        {trap}
+      </b><br></br><br></br>
+      <button onClick={() => setTrap(trap + 1)} class='normal-button'>
+        +
+      </button>
+      <button onClick={() => setTrap(trap - 1)} class='normal-button'>
+        -
+      </button>
+    </div>
+  );
+}
+
+function DropsComponent() {
+  const [drops, setDrops] = useState(0);
+  return(
+    <div>
+      <b id='dropsdisp'>
+        {drops}
+      </b><br></br><br></br>
+      <button onClick={() => setDrops(drops + 1)} class='normal-button'>
+        +
+      </button>
+      <button onClick={() => setDrops(drops - 1)} class='normal-button'>
+        -
+      </button>
+    </div>
+  );
+}
+
+function ClimbedComponent() {
+  const [climbed, setClimbed] = useState(Boolean);
   return (
   <input
   type="checkbox"
-  value={coopertition_point}
-  onChange={handleCoopChange}
-  id="coop-checkbox"
-  name="subscribe" 
+  onChange={handleClimbed}
+  value={climbed}
+  id="climbed-checkbox"
+  name="climb-cb"
   />
   );
+  function handleClimbed() {
+    if (document.getElementById('climbed-checkbox').value === true) {setClimbed(true);}
+    else if (document.getElementById('climbed-checkbox').value === false) {setClimbed(false);}
+  }
 }
-function handleCoopChange() {
 
+function ParkedComponent() {
+  const [parked, setParked] = useState(Boolean);
+  return (
+  <input
+  type="checkbox"
+  onChange={handleParked}
+  value={parked}
+  id="parked-checkbox"
+  name="park-box"
+  />
+  );
+  function handleParked() {
+    if (document.getElementById('parked-checkbox').value === true) {setParked(true);}
+    else if (document.getElementById('parked-checkbox').value === false) {setParked(false);}
+  }
 }
 
+function HarmonyComponent() {
+  const [harmony, setHarmony] = useState(Boolean);
+  return (
+  <input
+  type="checkbox"
+  onChange={handleHarmony}
+  value={harmony}
+  id="harmony-checkbox"
+  name="harm-box"
+  />
+  );
+  function handleHarmony() {
+    if (document.getElementById('harmony-checkbox').value === true) {setHarmony(true);}
+    else if (document.getElementById('harmony-checkbox').value === false) {setHarmony(false);}
+  }
+}
+
+// used to be in a seperate file but that did not work
+function handleSubmit(e) {
+  e.preventDefault();
+  fetch('http://localhost:65535', {
+     method: 'POST',
+     body: JSON.stringify({
+        scoutname: scoutname,  
+        team: team,
+        matchNumber: matchnum,
+        alliance: alliance,
+        autoAmpPoints: autoamp,
+        autoSpeakerPoints: autospeaker,
+        autoLeftZone: left_zone,
+        teleAmpPoints: teleamp,
+        teleSpeakerPoints: telespeaker_u,
+        teleSpeakerAmplifiedNotes: telespeaker_a,
+        drops: drops,
+        climbed: climbed,
+        parked: parked,
+        harmony: harmony,
+        trap: trap
+     }),
+     headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+     },
+  })
+     //.then((res) => res.json())
+     //.then((post) => {
+      //  setPosts((posts) => [post, ...posts]);
+      //  setTitle('');
+      //  setBody('');
+     //})
+     .catch((err) => {
+        console.log(err.message);
+     });
+}
 
 function App() {
   return (
@@ -224,12 +327,16 @@ function App() {
             <TeleSpeakerUnamplifiedComponent />
         <h3 class='teleop-speaker-text2'>Amplified Speaker Score</h3>
             <TeleSpeakerAmplifiedComponent />
-        <h3>Coopertition Point</h3>
-        <input class="coopertition_checkbox" type="checkbox"/>
-        <h3 class='rp-text1'>Ranking Points</h3>
-        <b id='rp-text2'>{ranking_points}</b> <br></br><br></br>
-          <button onClick={button_handler11} class='normal_button' id='rp+'>+</button>
-          <button onClick={button_handler12} class='normal_button' id='rp-'>-</button>
+        <h3 class='trapscore-text'>Trap score</h3>
+            <TrapComponent />
+        <h3 class='drops-text'>Number of times bot dropped note</h3>
+            <DropsComponent />
+        <h3 class='climbed-text'>Robot climbed</h3>
+            <ClimbedComponent />
+        <h3 class='parked-text'>Robot parked</h3>
+            <ParkedComponent />
+        <h3 class='harmony-text'>Robot got harmony</h3>
+            <HarmonyComponent />
         <br></br>
         <br></br>
         <input onClick={submitHandler} type='submit'/>
