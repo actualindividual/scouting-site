@@ -30,8 +30,6 @@ export function bluebtnfunc() {
   console.log(alliance);
 }
 
-// Old (bad) button handler code is no more
-
 export function submitHandler() {
   let team = document.getElementById('team-input');
   console.log("jaskjaskjlaskjlaskjl");
@@ -68,11 +66,10 @@ export function MatchNumInput() {
 
 export function TeamNumInput() {
   return (
-    <input type='text'>
+    <input type='text' id='tn_input'>
     </input>
   );
 }
-
 
 export function AutoAmpComponent() {
   const [autoamp, setAutoamp] = useState(0);
@@ -301,6 +298,7 @@ export function uploadStand(e) {
 export function Stand() {
   return (
       <div class='container'>
+        <h1>Stand Scouting</h1>
         <h2 class="basicinfo-text">Basic Info</h2>
         <h3 class='scout-name'>Scout name</h3>
           <ScoutNameInput />
