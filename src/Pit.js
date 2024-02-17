@@ -2,6 +2,23 @@ import './Pit.css'; // I can't style the react-select boxes for some reason, and
 import { useState } from 'react';
 import Select from 'react-select';
 import { TeamNumInput, ScoutNameInput } from './Stand.js';
+import { address } from './App.js'
+
+// defining them so it doesn't throw an error 
+
+let team_num;
+let scoutname;
+let drive_type;
+let intake_type;
+let defense;
+let speaker;
+let climb = Boolean;
+let best_auto = String;
+let harmony = Boolean;
+let understage = Boolean;
+let trap = Boolean;
+let extra_notes = String;
+
 
 function handlePitSubmit() {
 	let team_num = document.getElementById('tn_input');
@@ -9,22 +26,29 @@ function handlePitSubmit() {
 	let drive_type = document.getElementById('drive-type-dropdown');
 	let intake_type = document.getElementById('intake-type-dropdown');
 	let extra_notes = document.getElementById('scout-comments');
+	let best_auto = document.getElementById('best-auto-input');
 }
-export function uploadPit() {
-    //teamNumber: team_num,
-	//scoutName: scoutname,
-	//driveType: drive_type,
-	//intake: intake_type,
-	//playstyle: String, <--*
-	//bestAuto: String, <--*
-	//defense: defense,
-	//speaker: speaker, 
-	//climb: climb, 
-	//harmony: harmony, 
-	//underStage: Bool, <--
-	//trap: Bool, <--
-	//extraNotes: extra_notes
+export function uploadPit(e) {
+	e.preventDefault();
+	fetch(address, {
+	   method: 'POST',
+	   body: JSON.stringify({
+		teamNumber: team_num,
+		scoutName: scoutname,
+		driveType: drive_type,
+		intake: intake_type,
+		bestAuto: best_auto, 
+		defense: defense,
+		speaker: speaker, 
+		climb: climb, 
+		harmony: harmony, 
+		underStage: understage, 
+		trap: trap, 
+		extraNotes: extra_notes
+		})
+	})
 }
+
 
 const dtc_options = [
 	{ value : 'tank', label: 'Tank'},
@@ -33,13 +57,10 @@ const dtc_options = [
 	{ value : 'mecanum', label: 'Mecanum'}
 ]
 const intake_options = [ // Need to figure out the types of intakes for this year's game
+	{ value : 'over-frame', label: 'Over-Frame'},
+	{ value : 'under-frame', label: 'Under-Frame'}
 ]
-const playstyle_options = [ // Need to figure out what to put here
-	
-]
-const best_auto_options = [ // Need to figure out what to put here
 
-]
 
 function DefenseComponent() {
 	const [defense, setDefense] = useState(Boolean);
@@ -156,10 +177,8 @@ export function Pit() { // Component function for pit ui
 						<Select className='dropdown' id='drive-type-dropdown' options={dtc_options} />
 					<h3 className='intake-text'>Intake</h3>
 						<Select className='dropdown' id='intake-type-dropdown' options={intake_options} />
-					<h3 className='playstyle-text'>Playstyle</h3>
-						<Select className='dropdown' id='playstyle-dropdown' options={playstyle_options}/>
-					<h3 className='best-auto-test'>Best Auto</h3>
-						<Select className='dropdown' id='best-auto-dropdown' options={best_auto_options}/>
+					<h3 className='best-auto-text'>Best Auto</h3>
+						<input className='ba-text' id='best-auto-input' />
 					<h3 className='defense-text'>Defense?</h3>
 						<DefenseComponent />
 					<h3 className='speaker-text'>Speaker?</h3>
