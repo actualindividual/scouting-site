@@ -20,7 +20,7 @@ let trap = Boolean;
 let extra_notes = String;
 
 
-function handlePitSubmit() {
+function handlePitSubmitPart1() {
 	let team_num = document.getElementById('tn_input');
 	let scoutname = document.getElementById('scoutname-input');
 	let drive_type = document.getElementById('drive-type-dropdown');
@@ -28,8 +28,8 @@ function handlePitSubmit() {
 	let extra_notes = document.getElementById('scout-comments');
 	let best_auto = document.getElementById('best-auto-input');
 }
-export function uploadPit(e) {
-	e.preventDefault();
+function uploadPit(e) {
+	//e.preventDefault();
 	fetch(address, {
 	   method: 'POST',
 	   body: JSON.stringify({
@@ -54,11 +54,12 @@ const dtc_options = [
 	{ value : 'tank', label: 'Tank'},
 	{ value : 'swerve', label: 'Swerve'},
 	{ value : 'omni', label: 'Omni'},
-	{ value : 'mecanum', label: 'Mecanum'}
+	{ value : 'mecanum', label: 'Mecanum'},
+	{ value : 'other', label: 'Other'}
 ]
 const intake_options = [ // Need to figure out the types of intakes for this year's game
-	{ value : 'over-frame', label: 'Over-Frame'},
-	{ value : 'under-frame', label: 'Under-Frame'}
+	{ value : 'ground', label: 'Ground'},
+	{ value : 'source', label: 'Source'}
 ]
 
 
@@ -161,6 +162,12 @@ function TrapComponent() {
 function CommentsComponent() {
 	return (
 		<textarea id="scout-comments" />
+	);
+}
+
+function SubmitButton() {
+	return (
+		<input></input>
 	);
 }
 
