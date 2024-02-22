@@ -279,21 +279,8 @@ export function uploadStand(e) {
         parked: parked,
         harmony: harmony,
         trap: trap
-     }),
-     headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-     },
-  })
-     //.then((res) => res.json())
-     //.then((post) => {
-      //  setPosts((posts) => [post, ...posts]);
-      //  setTitle('');
-      //  setBody('');
-     //})
-     .catch((err) => {
-        console.log(err.message);
-     });
-}
+     })})
+    }
 
 export function Stand() {
   return (

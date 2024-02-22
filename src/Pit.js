@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Select from 'react-select';
 import { TeamNumInput, ScoutNameInput } from './Stand.js';
 import { address } from './App.js'
+import { upload } from '@testing-library/user-event/dist/types/utility/upload.js';
 
 // defining them so it doesn't throw an error 
 
@@ -49,6 +50,10 @@ function uploadPit(e) {
 	})
 }
 
+function bigSubmit() {
+	handlePitSubmitPart1();
+	uploadPit();
+}
 
 const dtc_options = [
 	{ value : 'tank', label: 'Tank'},
