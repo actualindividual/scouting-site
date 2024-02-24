@@ -1,4 +1,3 @@
-// please just use the mobile app this is horrible in comparison
 
 import './App.css';
 //import { useState } from 'react';
@@ -7,11 +6,8 @@ import { Pit } from './Pit.js'
 
 let x = true;
 
-export let address = '98.59.100.219:3082'; // this probably should be in json 
-//const [StandOrPit, changeStandOrPit] = useState(true);
-
-export function TopButtons({csop}) {
-  //const [StandOrPit, changeStandOrPit] = useState(true);
+export function TopButtons() {
+  
   return (
     <div id='top-buttons-div'>
       <button onClick={changeToStand}>Stand</button>

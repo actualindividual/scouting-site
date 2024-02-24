@@ -1,3 +1,4 @@
+import { address } from './App';
 import './Stand.css'
 import { useState } from 'react';
 
@@ -11,7 +12,6 @@ let parked;
 let climbed;
 let harmony;
 let trap;
-// Do these need to be declared as integers as opposed to as any's? IDK...
 let autoamp = 0;
 let matchnum = 0;
 let autospeaker = 0;
@@ -258,12 +258,14 @@ export function HarmonyComponent() {
   }
 }
 
-// used to be in a seperate file but that did not work
 export function uploadStand(e) {
   e.preventDefault();
-  fetch('http://localhost:65535', {
+  fetch(address, {
      method: 'POST',
      body: JSON.stringify({
+        username: localStorage.getItem('username').value,
+        email: localStorage.getItem('email').value,
+        password: localStorage.getItem('password').value, // should be hashed
         scoutname: scoutname,  
         team: team,
         matchNumber: matchnum,

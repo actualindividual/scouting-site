@@ -1,3 +1,8 @@
+# Important information
+
+Before running/building, remove the '.template' from 'config.json.template' and put
+your database's address there.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
