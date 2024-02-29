@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/existinghuman99.github.io/scouting-app/static/css/main.e27ef09e.css",
+    "main.js": "/existinghuman99.github.io/scouting-app/static/js/main.e364a08a.js",
+    "static/js/488.4e0187c0.chunk.js": "/existinghuman99.github.io/scouting-app/static/js/488.4e0187c0.chunk.js",
+    "index.html": "/existinghuman99.github.io/scouting-app/index.html",
+    "main.e27ef09e.css.map": "/existinghuman99.github.io/scouting-app/static/css/main.e27ef09e.css.map",
+    "main.e364a08a.js.map": "/existinghuman99.github.io/scouting-app/static/js/main.e364a08a.js.map",
+    "488.4e0187c0.chunk.js.map": "/existinghuman99.github.io/scouting-app/static/js/488.4e0187c0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e27ef09e.css",
+    "static/js/main.e364a08a.js"
+  ]
+}
