@@ -2,7 +2,7 @@ import './Pit.css'; // I can't style the react-select boxes for some reason, and
 import { useState } from 'react';
 import Select from 'react-select';
 import { TeamNumInput, ScoutNameInput } from './Stand.js';
-import { address } from './App.js'
+import data from './config.json';
 //import { upload } from '@testing-library/user-event/dist/types/utility/upload.js';
 
 // defining them so it doesn't throw an error 
@@ -31,7 +31,7 @@ function handlePitSubmitPart1() {
 }
 function uploadPit(e) {
 	//e.preventDefault();
-	fetch(address, {
+	fetch(data.address, {
 	   method: 'POST',
 	   body: JSON.stringify({
 		teamNumber: team_num,

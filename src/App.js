@@ -1,13 +1,10 @@
-
 import './App.css';
-//import { useState } from 'react';
-import { Stand } from './Stand.js'
-import { Pit } from './Pit.js'
+import { useState } from 'react';
+import { Stand } from './Stand.js';
+import { Pit } from './Pit.js';
+import data from './config.json';
 
-let x = true;
-
-export function TopButtons() {
-  
+export function TopButtons(csop) {
   return (
     <div id='top-buttons-div'>
       <button onClick={changeToStand}>Stand</button>
@@ -68,25 +65,28 @@ export function Login() {
           <PasswordInput />
           <br></br>
           <LoginButton />
+          <br></br>
+          <h2>Refresh the page after submission.</h2>
       </div>
   )
 }
 
 function App() {
-  if (localStorage.getItem('username') === null) {
+  const [StandOrPit, changeStandOrPit] = useState(true);
+  if (localStorage.getItem('username') === null || localStorage.getItem('email') === null || localStorage.getItem('password') === null) {
     return (<Login />);
   } else {
-    if (x) {
+    if (StandOrPit) {
       return(
         <div id='omnipresent*-div'>
-          <TopButtons />
+          <TopButtons csop={changeStandOrPit}/>
           <Stand />
         </div>
       );
     } else {
       return (
         <div id='omnipresent*-div'>
-          <TopButtons />
+          <TopButtons csop={changeStandOrPit}/>
           <Pit />
         </div>
       );
