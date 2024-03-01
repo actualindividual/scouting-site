@@ -3,7 +3,6 @@ import './Pit.css'; // I can't style the react-select boxes for some reason, and
 import { useState } from 'react';
 import Select from 'react-select';
 import { TeamNumInput, ScoutNameInput } from './Stand.js';
-import data from './config.json';
 //import { upload } from '@testing-library/user-event/dist/types/utility/upload.js';
 
 // defining them so it doesn't throw an error 
