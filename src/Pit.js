@@ -3,6 +3,7 @@ import './Pit.css'; // I can't style the react-select boxes for some reason, and
 import { useState } from 'react';
 import Select from 'react-select';
 import { TeamNumInput, ScoutNameInput } from './Stand.js';
+import data from './config.json';
 //import { upload } from '@testing-library/user-event/dist/types/utility/upload.js';
 
 // defining them so it doesn't throw an error 
@@ -22,12 +23,32 @@ let extra_notes = String;
 
 
 function handlePitSubmitPart1() {
-	let team_num = document.getElementById('tn-input').value;
-	let scoutname = document.getElementById('scoutname-input').value;
-	let drive_type = document.getElementById('drive-type-dropdown').value;
-	let intake_type = document.getElementById('intake-type-dropdown').value;
-	let extra_notes = document.getElementById('scout-comments').value;
-	let best_auto = document.getElementById('best-auto-input').value;
+	let team_num = document.getElementById('tn_input');
+	let scoutname = document.getElementById('scoutname-input');
+	let drive_type = document.getElementById('drive-type-dropdown');
+	let intake_type = document.getElementById('intake-type-dropdown');
+	let extra_notes = document.getElementById('scout-comments');
+	let best_auto = document.getElementById('best-auto-input');
+}
+function uploadPit(e) {
+	//e.preventDefault();
+	fetch(data.address, {
+	   method: 'POST',
+	   body: JSON.stringify({
+		teamNumber: team_num,
+		scoutName: scoutname,
+		driveType: drive_type,
+		intake: intake_type,
+		bestAuto: best_auto, 
+		defense: defense,
+		speaker: speaker, 
+		climb: climb, 
+		harmony: harmony, 
+		underStage: understage, 
+		trap: trap, 
+		extraNotes: extra_notes
+		})
+	})
 }
 
 function bigSubmit() {

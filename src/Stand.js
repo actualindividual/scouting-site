@@ -1,6 +1,7 @@
 import data from './config.json';
 import './Stand.css'
 import { useState } from 'react';
+import data from './config.json';
 
 // These are all collected from user through forms. If they aren't declared here the app throws an error
 let alliance;

@@ -2,9 +2,9 @@ import './App.css';
 import { useState } from 'react';
 import { Stand } from './Stand.js';
 import { Pit } from './Pit.js';
-//import data from './config.json';
+import data from './config.json';
 
-export function TopButtons({csop}) {
+export function TopButtons(csop) {
   return (
     <div id='top-buttons-div'>
       <button onClick={changeToStand}>Stand</button>
