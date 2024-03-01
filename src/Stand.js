@@ -1,19 +1,18 @@
-import { address } from './App';
+import data from './config.json';
 import './Stand.css'
 import { useState } from 'react';
 
 // These are all collected from user through forms. If they aren't declared here the app throws an error
 let alliance;
-let team;
+//let team;
 let left_zone;
 let drops;
-let scoutname;
+//let scoutname;
 let parked;
 let climbed;
 let harmony;
 let trap;
 let autoamp = 0;
-let matchnum = 0;
 let autospeaker = 0;
 let teleamp = 0;
 let telespeaker_a = 0;
@@ -28,13 +27,6 @@ export function redbtnfunc() {
 export function bluebtnfunc() {
   alliance = "blue";
   console.log(alliance);
-}
-
-export function submitHandler() {
-  let team = document.getElementById('team-input');
-  console.log("jaskjaskjlaskjlaskjl");
-  let match = document.getElementById('match-input');
-  let scoutname = document.getElementById('scoutname-input');
 }
 
 export function RedButton() {
@@ -59,14 +51,14 @@ export function ScoutNameInput() {
 }
 export function MatchNumInput() {
   return (
-    <input type='text'>
+    <input type='text' id='match-input'>
     </input>
   );
 }
 
 export function TeamNumInput() {
   return (
-    <input type='text' id='tn_input'>
+    <input type='text' id='tn-input'>
     </input>
   );
 }
@@ -258,31 +250,16 @@ export function HarmonyComponent() {
   }
 }
 
-export function uploadStand(e) {
-  e.preventDefault();
-  fetch(address, {
-     method: 'POST',
-     body: JSON.stringify({
-        username: localStorage.getItem('username').value,
-        email: localStorage.getItem('email').value,
-        password: localStorage.getItem('password').value, // should be hashed
-        scoutname: scoutname,  
-        team: team,
-        matchNumber: matchnum,
-        alliance: alliance,
-        autoAmpPoints: autoamp,
-        autoSpeakerPoints: autospeaker,
-        autoLeftZone: left_zone,
-        teleAmpPoints: teleamp,
-        teleSpeakerPoints: telespeaker_u,
-        teleSpeakerAmplifiedNotes: telespeaker_a,
-        drops: drops,
-        climbed: climbed,
-        parked: parked,
-        harmony: harmony,
-        trap: trap
-     })})
-    }
+function bigSubmitStand() {
+  //submitHandler();
+  uploadStand(window.event);
+}
+
+function SubmitButton() {
+  return (
+  <button onClick={bigSubmitStand} id='submit-button'>Submit</button>
+  );
+}
 
 export function Stand() {
   return (
@@ -316,7 +293,7 @@ export function Stand() {
             <TeleSpeakerAmplifiedComponent />
         <h3 class='trapscore-text'>Trap score</h3>
             <TrapComponent />
-        <h3 class='drops-text'>Number of times bot dropped note</h3>
+        <h3 class='drops-text'>Drops</h3>
             <DropsComponent />
         <h3 class='climbed-text'>Robot climbed</h3>
             <ClimbedComponent />
@@ -324,6 +301,43 @@ export function Stand() {
             <ParkedComponent />
         <h3 class='harmony-text'>Robot got harmony</h3>
             <HarmonyComponent />
+            <br></br><br></br>
+            <SubmitButton />
     </div>
   );
 }
+
+export function uploadStand(e) {
+  e.preventDefault();
+  fetch(data.address, {
+     method: 'POST',
+     body: JSON.stringify({
+        username: localStorage.getItem('username').value,
+        email: localStorage.getItem('email').value,
+        password: localStorage.getItem('password').value, // should be hashed
+        scoutname: document.getElementById('scoutname-input').value,  
+        team: document.getElementById('tn-input').value,
+        matchNumber: document.getElementById('match-input').value,
+        alliance: alliance,
+        autoAmpPoints: autoamp,
+        autoSpeakerPoints: autospeaker,
+        autoLeftZone: left_zone,
+        teleAmpPoints: teleamp,
+        teleSpeakerPoints: telespeaker_u,
+        teleSpeakerAmplifiedNotes: telespeaker_a,
+        drops: drops,
+        climbed: climbed,
+        parked: parked,
+        harmony: harmony,
+        trap: trap
+     })})
+     .then (
+      function(response) {
+        if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+            response.status);
+        return;
+        }
+      }
+     )
+    }

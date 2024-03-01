@@ -1,8 +1,8 @@
+import data from './config.json';
 import './Pit.css'; // I can't style the react-select boxes for some reason, and their docs are no help
 import { useState } from 'react';
 import Select from 'react-select';
 import { TeamNumInput, ScoutNameInput } from './Stand.js';
-import { address } from './App.js'
 //import { upload } from '@testing-library/user-event/dist/types/utility/upload.js';
 
 // defining them so it doesn't throw an error 
@@ -22,37 +22,17 @@ let extra_notes = String;
 
 
 function handlePitSubmitPart1() {
-	let team_num = document.getElementById('tn_input');
-	let scoutname = document.getElementById('scoutname-input');
-	let drive_type = document.getElementById('drive-type-dropdown');
-	let intake_type = document.getElementById('intake-type-dropdown');
-	let extra_notes = document.getElementById('scout-comments');
-	let best_auto = document.getElementById('best-auto-input');
-}
-function uploadPit(e) {
-	//e.preventDefault();
-	fetch(address, {
-	   method: 'POST',
-	   body: JSON.stringify({
-		teamNumber: team_num,
-		scoutName: scoutname,
-		driveType: drive_type,
-		intake: intake_type,
-		bestAuto: best_auto, 
-		defense: defense,
-		speaker: speaker, 
-		climb: climb, 
-		harmony: harmony, 
-		underStage: understage, 
-		trap: trap, 
-		extraNotes: extra_notes
-		})
-	})
+	let team_num = document.getElementById('tn-input').value;
+	let scoutname = document.getElementById('scoutname-input').value;
+	let drive_type = document.getElementById('drive-type-dropdown').value;
+	let intake_type = document.getElementById('intake-type-dropdown').value;
+	let extra_notes = document.getElementById('scout-comments').value;
+	let best_auto = document.getElementById('best-auto-input').value;
 }
 
 function bigSubmit() {
 	handlePitSubmitPart1();
-	uploadPit();
+	uploadPit(window.event);
 }
 
 const dtc_options = [
@@ -62,7 +42,7 @@ const dtc_options = [
 	{ value : 'mecanum', label: 'Mecanum'},
 	{ value : 'other', label: 'Other'}
 ]
-const intake_options = [ // Need to figure out the types of intakes for this year's game
+const intake_options = [ 
 	{ value : 'ground', label: 'Ground'},
 	{ value : 'source', label: 'Source'}
 ]
@@ -172,7 +152,7 @@ function CommentsComponent() {
 
 function SubmitButton() {
 	return (
-		<input></input>
+		<button onClick={bigSubmit} id='submit-button'>Submit</button>
 	);
 }
 
@@ -206,7 +186,44 @@ export function Pit() { // Component function for pit ui
 					<h3 className='comments-text'>Additional Comments</h3>
 						<CommentsComponent />
 						<br></br><br></br>
+						<SubmitButton />
+						<br></br>
 		</div> 
 	);
 
+}
+
+function uploadPit(e) {
+	e.preventDefault();
+	fetch(data.address, {
+	   method: 'POST',
+	   body: JSON.stringify({
+		username: localStorage.getItem('username').value,
+        email: localStorage.getItem('email').value,
+        password: localStorage.getItem('password').value, // should be hashed
+		teamNumber: team_num,
+		scoutName: scoutname,
+		driveType: drive_type,
+		intake: intake_type,
+		bestAuto: best_auto, 
+		defense: defense,
+		speaker: speaker, 
+		climb: climb, 
+		harmony: harmony, 
+		underStage: understage, 
+		trap: trap, 
+		extraNotes: extra_notes
+		})
+	})
+	.then (
+		function(response) {
+		  if (response.status !== 200) {
+		  console.log('Looks like there was a problem. Status Code: ' +
+			  response.status);
+		  return;
+		  }
+		}
+	   )
+	
+	
 }
