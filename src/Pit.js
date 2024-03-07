@@ -29,30 +29,10 @@ function handlePitSubmitPart1() {
 	let extra_notes = document.getElementById('scout-comments');
 	let best_auto = document.getElementById('best-auto-input');
 }
-function uploadPit(e) {
-	//e.preventDefault();
-	fetch(data.address, {
-	   method: 'POST',
-	   body: JSON.stringify({
-		teamNumber: team_num,
-		scoutName: scoutname,
-		driveType: drive_type,
-		intake: intake_type,
-		bestAuto: best_auto, 
-		defense: defense,
-		speaker: speaker, 
-		climb: climb, 
-		harmony: harmony, 
-		underStage: understage, 
-		trap: trap, 
-		extraNotes: extra_notes
-		})
-	})
-}
 
 function bigSubmit() {
 	handlePitSubmitPart1();
-	uploadPit(window.event);
+	savePit(window.event);
 }
 
 const dtc_options = [
@@ -213,11 +193,9 @@ export function Pit() { // Component function for pit ui
 
 }
 
-function uploadPit(e) {
+export function savePit(e) {
 	e.preventDefault();
-	fetch(data.address, {
-	   method: 'POST',
-	   body: JSON.stringify({
+	localStorage.setItem(localStorage.getItem('username') + team_num, JSON.stringify({
 		username: localStorage.getItem('username').value,
         email: localStorage.getItem('email').value,
         password: localStorage.getItem('password').value, // should be hashed
@@ -233,17 +211,5 @@ function uploadPit(e) {
 		underStage: understage, 
 		trap: trap, 
 		extraNotes: extra_notes
-		})
-	})
-	.then (
-		function(response) {
-		  if (response.status !== 200) {
-		  console.log('Looks like there was a problem. Status Code: ' +
-			  response.status);
-		  return;
-		  }
-		}
-	   )
-	
-	
+	}))
 }

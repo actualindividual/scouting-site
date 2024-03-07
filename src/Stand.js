@@ -1,7 +1,5 @@
-import data from './config.json';
 import './Stand.css'
 import { useState } from 'react';
-import data from './config.json';
 
 // These are all collected from user through forms. If they aren't declared here the app throws an error
 let alliance;
@@ -32,14 +30,14 @@ export function bluebtnfunc() {
 
 export function RedButton() {
   return(
-    <button onClick={redbtnfunc} class='red-btn'>
+    <button onClick={redbtnfunc} className='red-btn'>
       Red
     </button>
   );
 }
 export function BlueButton() {
   return(
-    <button onClick={bluebtnfunc} class='blue-btn'>
+    <button onClick={bluebtnfunc} className='blue-btn'>
       Blue
     </button>
   );
@@ -71,10 +69,10 @@ export function AutoAmpComponent() {
       <b id='autoampdisp'>
         {autoamp}
       </b><br></br><br></br>
-      <button onClick={() => setAutoamp(autoamp + 1)} class='normal-button'>
+      <button onClick={() => setAutoamp(autoamp + 1)} className='normal-button'>
         +
       </button>
-      <button onClick={() => setAutoamp(autoamp - 1)} class='normal-button'>
+      <button onClick={() => setAutoamp(autoamp - 1)} className='normal-button'>
         -
       </button>
     </div>
@@ -88,10 +86,10 @@ export function AutoSpeakerComponent() {
       <b id='autospeakerdisp'>
         {autospeaker}
       </b><br></br><br></br>
-      <button onClick={() => setAutospeaker(autospeaker + 1)} class='normal-button'>
+      <button onClick={() => setAutospeaker(autospeaker + 1)} className='normal-button'>
         +
       </button>
-      <button onClick={() => setAutospeaker(autospeaker - 1)} class='normal-button'>
+      <button onClick={() => setAutospeaker(autospeaker - 1)} className='normal-button'>
         -
       </button>
     </div>
@@ -122,10 +120,10 @@ export function TeleAmpComponent() {
       <b id='teleampdisp'>
         {teleamp}
       </b><br></br><br></br>
-      <button onClick={() => setTeleamp(teleamp + 1)} class='normal-button'>
+      <button onClick={() => setTeleamp(teleamp + 1)} className='normal-button'>
         +
       </button>
-      <button onClick={() => setTeleamp(teleamp - 1)} class='normal-button'>
+      <button onClick={() => setTeleamp(teleamp - 1)} className='normal-button'>
         -
       </button>
     </div>
@@ -139,10 +137,10 @@ export function TeleSpeakerUnamplifiedComponent() {
       <b id='telespeakerunampdisp'>
         {telespeaker_unamplified}
       </b><br></br><br></br>
-      <button onClick={() => setTelespeakerUnamplified(telespeaker_unamplified + 1)} class='normal-button'>
+      <button onClick={() => setTelespeakerUnamplified(telespeaker_unamplified + 1)} className='normal-button'>
         +
       </button>
-      <button onClick={() => setTelespeakerUnamplified(telespeaker_unamplified - 1)} class='normal-button'>
+      <button onClick={() => setTelespeakerUnamplified(telespeaker_unamplified - 1)} className='normal-button'>
         -
       </button>
     </div>
@@ -156,10 +154,10 @@ export function TeleSpeakerAmplifiedComponent() {
       <b id='telespeakerampdisp'>
         {telespeaker_amplified}
       </b><br></br><br></br>
-      <button onClick={() => setTelespeakerAmplified(telespeaker_amplified + 1)} class='normal-button'>
+      <button onClick={() => setTelespeakerAmplified(telespeaker_amplified + 1)} className='normal-button'>
         +
       </button>
-      <button onClick={() => setTelespeakerAmplified(telespeaker_amplified - 1)} class='normal-button'>
+      <button onClick={() => setTelespeakerAmplified(telespeaker_amplified - 1)} className='normal-button'>
         -
       </button>
     </div>
@@ -173,10 +171,10 @@ export function TrapComponent() {
       <b id='trapdisp'>
         {trap}
       </b><br></br><br></br>
-      <button onClick={() => setTrap(trap + 1)} class='normal-button'>
+      <button onClick={() => setTrap(trap + 1)} className='normal-button'>
         +
       </button>
-      <button onClick={() => setTrap(trap - 1)} class='normal-button'>
+      <button onClick={() => setTrap(trap - 1)} className='normal-button'>
         -
       </button>
     </div>
@@ -190,10 +188,10 @@ export function DropsComponent() {
       <b id='dropsdisp'>
         {drops}
       </b><br></br><br></br>
-      <button onClick={() => setDrops(drops + 1)} class='normal-button'>
+      <button onClick={() => setDrops(drops + 1)} className='normal-button'>
         +
       </button>
-      <button onClick={() => setDrops(drops - 1)} class='normal-button'>
+      <button onClick={() => setDrops(drops - 1)} className='normal-button'>
         -
       </button>
     </div>
@@ -251,67 +249,11 @@ export function HarmonyComponent() {
   }
 }
 
-function bigSubmitStand() {
-  //submitHandler();
-  uploadStand(window.event);
-}
-
-function SubmitButton() {
-  return (
-  <button onClick={bigSubmitStand} id='submit-button'>Submit</button>
-  );
-}
-
-export function Stand() {
-  return (
-      <div class='container'>
-        <h1>Stand Scouting</h1>
-        <h2 class="basicinfo-text">Basic Info</h2>
-        <h3 class='scout-name'>Scout name</h3>
-          <ScoutNameInput />
-        <h3 class='matchnumber-text'>Match Number</h3>
-          <MatchNumInput />
-        <h3 class='tn-text'>Team Number</h3>
-          <TeamNumInput />
-        <h3 class='alliance-text'>Alliance</h3>
-          <RedButton />
-          <BlueButton />
-
-      <h2 class='auto-points-text'>Auto Points</h2>
-        <h3 class='auto-amp-text'>Amp score</h3>
-            <AutoAmpComponent />
-        <h3 class='auto-speaker-text'>Speaker score</h3>
-            <AutoSpeakerComponent />
-        <h3 class='left-zone-text'>Left zone</h3>
-            <LeftZoneComponent />
-
-      <h2 class='teleop-points-text'>Teleop Points</h2>
-        <h3 class='teleop-amp-text'>Amp score</h3>
-            <TeleAmpComponent />
-        <h3 class='teleop-speaker-text1'>Unamplified Speaker Score</h3>
-            <TeleSpeakerUnamplifiedComponent />
-        <h3 class='teleop-speaker-text2'>Amplified Speaker Score</h3>
-            <TeleSpeakerAmplifiedComponent />
-        <h3 class='trapscore-text'>Trap score</h3>
-            <TrapComponent />
-        <h3 class='drops-text'>Drops</h3>
-            <DropsComponent />
-        <h3 class='climbed-text'>Robot climbed</h3>
-            <ClimbedComponent />
-        <h3 class='parked-text'>Robot parked</h3>
-            <ParkedComponent />
-        <h3 class='harmony-text'>Robot got harmony</h3>
-            <HarmonyComponent />
-            <br></br><br></br>
-            <SubmitButton />
-    </div>
-  );
-}
-
 export function uploadStand(e) {
   e.preventDefault();
-  fetch(data.address, {
+  fetch("http://98.59.100.219:3082/matchinput", {
      method: 'POST',
+     headers: new Headers({'content-type': 'application/json'}),
      body: JSON.stringify({
         username: localStorage.getItem('username').value,
         email: localStorage.getItem('email').value,
@@ -332,13 +274,92 @@ export function uploadStand(e) {
         harmony: harmony,
         trap: trap
      })})
-     .then (
-      function(response) {
-        if (response.status !== 200) {
-        console.log('Looks like there was a problem. Status Code: ' +
-            response.status);
-        return;
-        }
-      }
-     )
-    }
+}
+  
+export function saveStand(e) {
+  window.event.preventDefault();
+  localStorage.setItem(localStorage.getItem('username').value + '-match-' + document.getElementById('match-input').value,JSON.stringify({
+        username: localStorage.getItem('username').value,
+        email: localStorage.getItem('email').value,
+        password: localStorage.getItem('password').value, // should be hashed
+        scoutname: document.getElementById('scoutname-input').value,  
+        team: document.getElementById('tn-input').value,
+        matchNumber: document.getElementById('match-input').value,
+        alliance: alliance,
+        autoAmpPoints: autoamp,
+        autoSpeakerPoints: autospeaker,
+        autoLeftZone: left_zone,
+        teleAmpPoints: teleamp,
+        teleSpeakerPoints: telespeaker_u,
+        teleSpeakerAmplifiedNotes: telespeaker_a,
+        drops: drops,
+        climbed: climbed,
+        parked: parked,
+        harmony: harmony,
+        trap: trap
+  })
+)}
+
+function bigSubmitStand() {
+  //submitHandler();
+  saveStand(window.event);
+  /*try {
+    uploadStand();
+  } catch(err) {
+    saveStand();
+  }*/
+}
+
+function SubmitButton() {
+  return (
+  <button onClick={bigSubmitStand} id='submit-button'>Submit</button>
+  );
+}
+
+export function Stand() {
+  return (
+      <div className='container'>
+        <h1>Stand Scouting</h1>
+        <h2 className="basicinfo-text">Basic Info</h2>
+        <h3 className='scout-name'>Scout name</h3>
+          <ScoutNameInput />
+        <h3 className='matchnumber-text'>Match Number</h3>
+          <MatchNumInput />
+        <h3 className='tn-text'>Team Number</h3>
+          <TeamNumInput />
+        <h3 className='alliance-text'>Alliance</h3>
+          <RedButton />
+          <BlueButton />
+
+      <h2 className='auto-points-text'>Auto Points</h2>
+        <h3 className='auto-amp-text'>Amp score</h3>
+            <AutoAmpComponent />
+        <h3 className='auto-speaker-text'>Speaker score</h3>
+            <AutoSpeakerComponent />
+        <h3 className='left-zone-text'>Left zone</h3>
+            <LeftZoneComponent />
+
+      <h2 className='teleop-points-text'>Teleop Points</h2>
+        <h3 className='teleop-amp-text'>Amp score</h3>
+            <TeleAmpComponent />
+        <h3 className='teleop-speaker-text1'>Unamplified Speaker Score</h3>
+            <TeleSpeakerUnamplifiedComponent />
+        <h3 className='teleop-speaker-text2'>Amplified Speaker Score</h3>
+            <TeleSpeakerAmplifiedComponent />
+        <h3 className='trapscore-text'>Trap score</h3>
+            <TrapComponent />
+        <h3 className='drops-text'>Drops</h3>
+            <DropsComponent />
+        <h3 className='climbed-text'>Robot climbed</h3>
+            <ClimbedComponent />
+        <h3 className='parked-text'>Robot parked</h3>
+            <ParkedComponent />
+        <h3 className='harmony-text'>Robot got harmony</h3>
+            <HarmonyComponent />
+            <br></br><br></br>
+            <SubmitButton />
+    </div>
+  );
+}
+
+

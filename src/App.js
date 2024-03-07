@@ -2,11 +2,11 @@ import './App.css';
 import { useState } from 'react';
 import { Stand } from './Stand.js';
 import { Pit } from './Pit.js';
-import data from './config.json';
 
-export function TopButtons(csop) {
+export function TopButtons({csop}) {
   return (
     <div id='top-buttons-div'>
+      <h2>ChickenScout Web Client</h2>
       <button onClick={changeToStand}>Stand</button>
       <button onClick={changeToPit}>Pit</button>
     </div>
@@ -70,6 +70,7 @@ export function Login() {
       </div>
   )
 }
+
 
 function App() {
   const [StandOrPit, changeStandOrPit] = useState(true);
