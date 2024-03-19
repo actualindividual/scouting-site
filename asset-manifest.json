@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/www.merrittjones.com/static/css/main.e27ef09e.css",
-    "main.js": "/www.merrittjones.com/static/js/main.3794072a.js",
-    "static/js/488.4e0187c0.chunk.js": "/www.merrittjones.com/static/js/488.4e0187c0.chunk.js",
-    "index.html": "/www.merrittjones.com/index.html",
-    "main.e27ef09e.css.map": "/www.merrittjones.com/static/css/main.e27ef09e.css.map",
-    "main.3794072a.js.map": "/www.merrittjones.com/static/js/main.3794072a.js.map",
-    "488.4e0187c0.chunk.js.map": "/www.merrittjones.com/static/js/488.4e0187c0.chunk.js.map"
+    "main.css": "/scouting-site/static/css/main.e27ef09e.css",
+    "main.js": "/scouting-site/static/js/main.989de4a0.js",
+    "static/js/488.4e0187c0.chunk.js": "/scouting-site/static/js/488.4e0187c0.chunk.js",
+    "index.html": "/scouting-site/index.html",
+    "main.e27ef09e.css.map": "/scouting-site/static/css/main.e27ef09e.css.map",
+    "main.989de4a0.js.map": "/scouting-site/static/js/main.989de4a0.js.map",
+    "488.4e0187c0.chunk.js.map": "/scouting-site/static/js/488.4e0187c0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e27ef09e.css",
-    "static/js/main.3794072a.js"
+    "static/js/main.989de4a0.js"
   ]
 }
