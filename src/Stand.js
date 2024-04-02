@@ -37,7 +37,7 @@ export function PlusMinusComponent(statevar, setStateVar, id) {
       <button onClick={() => setStateVar(statevar + 1)} className='plusminus-button'>
         +
       </button>
-      <button onClick={() => setAutoamp(autoamp - 1)} className='plusminus-button'>
+      <button onClick={() => setStateVar(autoamp - 1)} className='plusminus-button'>
         -
       </button>
     </div>
@@ -64,7 +64,7 @@ export function CheckboxComponent(statevar, setStateVar, id ) {
   );
   function handler() { // internal function that doesn't exist outside of the component's function
     if (document.getElementById(id).value === true) {setStateVar(true);}
-    else if (document.getElementById(id).value === false) {setState(false);}
+    else if (document.getElementById(id).value === false) {setStateVar(false);}
   }
 }
 
@@ -193,59 +193,7 @@ function SubmitButton() {
 
 export function Stand() {
   return (
-      <div className='container'>
-        <h1>Stand Scouting</h1>
-        <h2 className="basicinfo-text">Basic Info</h2>
-        <h3 className='scout-name'>Scout name</h3>
-          <ScoutNameInput />
-        <h3 className='matchnumber-text'>Match Number</h3>
-          <MatchNumInput />
-        <h3 className='tn-text'>Team Number</h3>
-          <TeamNumInput />
-        <h3 className='alliance-text'>Alliance</h3>
-          <RedButton />
-          <BlueButton />
-
-      <h2 className='auto-points-text'>Auto Points</h2>
-        <h3 className='auto-amp-text'>Amp score</h3>
-            <AutoAmpComponent />
-        <h3 className='auto-speaker-text'>Speaker score</h3>
-            <AutoSpeakerComponent />
-        <h3 className='left-zone-text'>Left zone</h3>
-            <LeftZoneComponent />
-
-      <h2 className='teleop-points-text'>Teleop Points</h2>
-        <h3 className='teleop-amp-text'>Amp score</h3>
-            <TeleAmpComponent />
-        <h3 className='teleop-speaker-text1'>Unamplified Speaker Score</h3>
-            <TeleSpeakerUnamplifiedComponent />
-        <h3 className='teleop-speaker-text2'>Amplified Speaker Score</h3>
-            <TeleSpeakerAmplifiedComponent />
-        <h3 className='trapscore-text'>Trap score</h3>
-            <TrapComponent />
-        <h3 className='drops-text'>Drops</h3>
-            <DropsComponent />
-        <h3 className='endgame-text'>End game</h3>
-          <h3 className='climbed-text'>Robot climbed</h3>
-              <ClimbedComponent />
-         <h3 className='parked-text'>Robot parked</h3>
-              <ParkedComponent />
-         <h2 className='coop-text'>Co-op</h2>
-            <h3 className='coop-offer-text'>Offered Co-op</h3>
-              <OfferedCoopComponent />
-            <h3 className='coop-did-text'>Did Co-op</h3>
-              <DidCoopComponent />
-         <h2 className=''>Mike</h2>
-            <h3 className='ampmike-text'>Scored Amp Mike</h3>
-              <AmpMikeComponent />
-            <h3 className='ampmike-text'>Source Amp Mike</h3>
-              <SourceMikeComponent />
-            <h3 className='ampmike-text'>Scored Center Mike</h3>
-              <CenterMikeComponent />
-            <h3 className='harmony-text'>Got harmony</h3>
-              <HarmonyComponent />
-            <br></br><br></br>
-            <SubmitButton />
+    <div className='stand-container'>
     </div>
   );
 }
