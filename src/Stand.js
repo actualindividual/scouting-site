@@ -27,16 +27,17 @@ let offeredcoop;
 // PARAMATER BREAKDOWN:
 // statevar: the state variable being used. This should be a boolean.
 // setStateVar: the state variable being used's changer function
-export function PlusMinusComponent(statevar, setStateVar) {
+// id: id for the display value.
+export function PlusMinusComponent(statevar, setStateVar, id) {
   return(
     <div>
-      <b id='displayvalue'>
+      <b id={id}>
         {statevar}
       </b><br></br><br></br>
-      <button onClick={() => setStateVar(statevar + 1)} className='normal-button'>
+      <button onClick={() => setStateVar(statevar + 1)} className='plusminus-button'>
         +
       </button>
-      <button onClick={() => setAutoamp(autoamp - 1)} className='normal-button'>
+      <button onClick={() => setAutoamp(autoamp - 1)} className='plusminus-button'>
         -
       </button>
     </div>
@@ -51,7 +52,7 @@ export function PlusMinusComponent(statevar, setStateVar) {
 // statevar: the state variable being used. This should be a number.
 // setStateVar: the state variable being used's changer function
 // id: the id of the component
-export function LeftZoneComponent(statevar, setStateVar, id ) {
+export function CheckboxComponent(statevar, setStateVar, id ) {
   return (
   <input
   type="checkbox"
@@ -62,13 +63,13 @@ export function LeftZoneComponent(statevar, setStateVar, id ) {
   />
   );
   function handler() { // internal function that doesn't exist outside of the component's function
-    if (document.getElementById('zone-checkbox').value === true) {setStateVar(true);}
-    else if (document.getElementById('zone-checkbox').value === false) {setState(false);}
+    if (document.getElementById(id).value === true) {setStateVar(true);}
+    else if (document.getElementById(id).value === false) {setState(false);}
   }
 }
 
 
-
+// Alliance buttons and their functions
 export function redbtnfunc() {
   alliance = "red";  
   console.log(alliance);
@@ -92,6 +93,9 @@ export function BlueButton() {
     </button>
   );
 }
+
+// Text inputs
+
 export function ScoutNameInput() {
   return (
     <input type='text' id="scoutname-input">
@@ -112,280 +116,6 @@ export function TeamNumInput() {
   );
 }
 
-export function AutoAmpComponent() {
-  const [autoamp, setAutoamp] = useState(0);
-  return(
-    <div>
-      <b id='autoampdisp'>
-        {autoamp}
-      </b><br></br><br></br>
-      <button onClick={() => setAutoamp(autoamp + 1)} className='normal-button'>
-        +
-      </button>
-      <button onClick={() => setAutoamp(autoamp - 1)} className='normal-button'>
-        -
-      </button>
-    </div>
-  );
-}
-
-export function AutoSpeakerComponent() {
-  const [autospeaker, setAutospeaker] = useState(0);
-  return(
-    <div>
-      <b id='autospeakerdisp'>
-        {autospeaker}
-      </b><br></br><br></br>
-      <button onClick={() => setAutospeaker(autospeaker + 1)} className='normal-button'>
-        +
-      </button>
-      <button onClick={() => setAutospeaker(autospeaker - 1)} className='normal-button'>
-        -
-      </button>
-    </div>
-  );
-}
-
-export function LeftZoneComponent() {
-  const [left_zone, setLeftZone] = useState(Boolean);
-  return (
-  <input
-  type="checkbox"
-  onChange={handleLeftZone}
-  value={left_zone}
-  id="zone-checkbox"
-  name="lz-cb"
-  />
-  );
-  function handleLeftZone() {
-    if (document.getElementById('zone-checkbox').value === true) {setLeftZone(true);}
-    else if (document.getElementById('zone-checkbox').value === false) {setLeftZone(false);}
-  }
-}
-
-export function TeleAmpComponent() {
-  const [teleamp, setTeleamp] = useState(0);
-  return(
-    <div>
-      <b id='teleampdisp'>
-        {teleamp}
-      </b><br></br><br></br>
-      <button onClick={() => setTeleamp(teleamp + 1)} className='normal-button'>
-        +
-      </button>
-      <button onClick={() => setTeleamp(teleamp - 1)} className='normal-button'>
-        -
-      </button>
-    </div>
-  );
-}
-
-export function TeleSpeakerUnamplifiedComponent() {
-  const [telespeaker_unamplified, setTelespeakerUnamplified] = useState(0);
-  return(
-    <div>
-      <b id='telespeakerunampdisp'>
-        {telespeaker_unamplified}
-      </b><br></br><br></br>
-      <button onClick={() => setTelespeakerUnamplified(telespeaker_unamplified + 1)} className='normal-button'>
-        +
-      </button>
-      <button onClick={() => setTelespeakerUnamplified(telespeaker_unamplified - 1)} className='normal-button'>
-        -
-      </button>
-    </div>
-  );
-}
-
-export function TeleSpeakerAmplifiedComponent() {
-  const [telespeaker_amplified, setTelespeakerAmplified] = useState(0);
-  return(
-    <div>
-      <b id='telespeakerampdisp'>
-        {telespeaker_amplified}
-      </b><br></br><br></br>
-      <button onClick={() => setTelespeakerAmplified(telespeaker_amplified + 1)} className='normal-button'>
-        +
-      </button>
-      <button onClick={() => setTelespeakerAmplified(telespeaker_amplified - 1)} className='normal-button'>
-        -
-      </button>
-    </div>
-  );
-}
-
-export function TrapComponent() {
-  const [trap, setTrap] = useState(0);
-  return(
-    <div>
-      <b id='trapdisp'>
-        {trap}
-      </b><br></br><br></br>
-      <button onClick={() => setTrap(trap + 1)} className='normal-button'>
-        +
-      </button>
-      <button onClick={() => setTrap(trap - 1)} className='normal-button'>
-        -
-      </button>
-    </div>
-  );
-}
-
-export function DropsComponent() {
-  const [drops, setDrops] = useState(0);
-  return(
-    <div>
-      <b id='dropsdisp'>
-        {drops}
-      </b><br></br><br></br>
-      <button onClick={() => setDrops(drops + 1)} className='normal-button'>
-        +
-      </button>
-      <button onClick={() => setDrops(drops - 1)} className='normal-button'>
-        -
-      </button>
-    </div>
-  );
-}
-
-// in all honesty these should just be one component with changable state values
-export function ClimbedComponent() {
-  const [climbed, setClimbed] = useState(Boolean);
-  return (
-  <input
-  type="checkbox"
-  onChange={handleClimbed}
-  value={climbed}
-  id="climbed-checkbox"
-  name="climb-cb"
-  />
-  );
-  function handleClimbed() {
-    if (document.getElementById('climbed-checkbox').value === true) {setClimbed(true);}
-    else if (document.getElementById('climbed-checkbox').value === false) {setClimbed(false);}
-  }
-}
-
-export function ParkedComponent() {
-  const [parked, setParked] = useState(Boolean);
-  return (
-  <input
-  type="checkbox"
-  onChange={handleParked}
-  value={parked}
-  id="parked-checkbox"
-  name="park-box"
-  />
-  );
-  function handleParked() {
-    if (document.getElementById('parked-checkbox').value === true) {setParked(true);}
-    else if (document.getElementById('parked-checkbox').value === false) {setParked(false);}
-  }
-}
-
-export function HarmonyComponent() {
-  const [harmony, setHarmony] = useState(Boolean);
-  return (
-  <input
-  type="checkbox"
-  onChange={handleHarmony}
-  value={harmony}
-  id="harmony-checkbox"
-  name="harm-box"
-  />
-  );
-  function handleHarmony() {
-    if (document.getElementById('harmony-checkbox').value === true) {setHarmony(true);}
-    else if (document.getElementById('harmony-checkbox').value === false) {setHarmony(false);}
-  }
-}
-
-export function OfferedCoopComponent() {
-  const [offeredcoop, setOfferedCoop] = useState(Boolean);
-  return (
-  <input
-  type="checkbox"
-  onChange={handleOfferedCoop}
-  value={offeredcoop}
-  id="off-coop-checkbox"
-  name="off-coop-box"
-  />
-  );
-  function handleOfferedCoop() {
-    if (document.getElementById('off-coop-checkbox').value === true) {setOfferedCoop(true);}
-    else if (document.getElementById('off-coop-checkbox').value === false) {setOfferedCoop(false);}
-  }
-}
-
-export function DidCoopComponent() {
-  const [didcoop, setDidCoop] = useState(Boolean);
-  return (
-  <input
-  type="checkbox"
-  onChange={handleDidCoop}
-  value={didcoop}
-  id="did-coop-checkbox"
-  name="did-coop-box"
-  />
-  );
-  function handleDidCoop() {
-    if (document.getElementById('off-coop-checkbox').value === true) {setDidCoop(true);}
-    else if (document.getElementById('off-coop-checkbox').value === false) {setDidCoop(false);}
-  }
-}
-
-// MIKE STUFF
-
-export function AmpMikeComponent() {
-  const [ampmike, setAmpMike] = useState(Boolean);
-  return (
-  <input
-  type="checkbox"
-  onChange={handleAmpMike}
-  value={ampmike}
-  id="ampmike-checkbox"
-  name="ampmike-box"
-  />
-  );
-  function handleAmpMike() {
-    if (document.getElementById('ampmike-checkbox').value === true) {setAmpMike(true);}
-    else if (document.getElementById('ampmike-checkbox').value === false) {setAmpMike(false);}
-  }
-}
-
-export function SourceMikeComponent() {
-  const [sourcemike, setSourceMike] = useState(Boolean);
-  return (
-  <input
-  type="checkbox"
-  onChange={handleSourceMike}
-  value={sourcemike}
-  id="sourcemike-checkbox"
-  name="sourcemike-box"
-  />
-  );
-  function handleSourceMike() {
-    if (document.getElementById('sourcemike-checkbox').value === true) {setSourceMike(true);}
-    else if (document.getElementById('sourcemike-checkbox').value === false) {setSourceMike(false);}
-  }
-}
-
-export function CenterMikeComponent() {
-  const [centermike, setCenterMike] = useState(Boolean);
-  return (
-  <input
-  type="checkbox"
-  onChange={handleCenterMike}
-  value={centermike}
-  id="centermike-checkbox"
-  name="centermike-box"
-  />
-  );
-  function handleCenterMike() {
-    if (document.getElementById('centermike-checkbox').value === true) {setCenterMike(true);}
-    else if (document.getElementById('sourcemike-checkbox').value === false) {setCenterMike(false);}
-  }
-}
 
 // UPLOAD/SAVE STUFF
 
