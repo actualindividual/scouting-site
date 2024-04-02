@@ -6,7 +6,7 @@ import { Pit } from './Pit.js';
 export function TopButtons({csop}) {
   return (
     <div id='top-buttons-div'>
-      <h2>ChickenScout Web Client</h2>
+      <h2>ChickenScout Web App</h2>
       <button onClick={changeToStand}>Stand</button>
       <button onClick={changeToPit}>Pit</button>
     </div>
