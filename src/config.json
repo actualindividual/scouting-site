@@ -1,3 +1,4 @@
 {
-    "address":"http://98.59.100.219:3082/matchinput"
+    "address":"http://98.59.100.219:3082/matchinput",
+    "address_pit":"http://98.59.100.219:3082/pitinput"
 }
