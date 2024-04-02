@@ -16,6 +16,9 @@ let autospeaker = 0;
 let teleamp = 0;
 let telespeaker_a = 0;
 let telespeaker_u = 0;
+let didcoop;
+let offeredcoop;
+
 
 
 
@@ -198,6 +201,7 @@ export function DropsComponent() {
   );
 }
 
+// in all honesty these should just be one component with changable state values
 export function ClimbedComponent() {
   const [climbed, setClimbed] = useState(Boolean);
   return (
@@ -249,6 +253,95 @@ export function HarmonyComponent() {
   }
 }
 
+export function OfferedCoopComponent() {
+  const [offeredcoop, setOfferedCoop] = useState(Boolean);
+  return (
+  <input
+  type="checkbox"
+  onChange={handleOfferedCoop}
+  value={offeredcoop}
+  id="off-coop-checkbox"
+  name="off-coop-box"
+  />
+  );
+  function handleOfferedCoop() {
+    if (document.getElementById('off-coop-checkbox').value === true) {setOfferedCoop(true);}
+    else if (document.getElementById('off-coop-checkbox').value === false) {setOfferedCoop(false);}
+  }
+}
+
+export function DidCoopComponent() {
+  const [didcoop, setDidCoop] = useState(Boolean);
+  return (
+  <input
+  type="checkbox"
+  onChange={handleDidCoop}
+  value={didcoop}
+  id="did-coop-checkbox"
+  name="did-coop-box"
+  />
+  );
+  function handleDidCoop() {
+    if (document.getElementById('off-coop-checkbox').value === true) {setDidCoop(true);}
+    else if (document.getElementById('off-coop-checkbox').value === false) {setDidCoop(false);}
+  }
+}
+
+// MIKE STUFF
+
+export function AmpMikeComponent() {
+  const [ampmike, setAmpMike] = useState(Boolean);
+  return (
+  <input
+  type="checkbox"
+  onChange={handleAmpMike}
+  value={ampmike}
+  id="ampmike-checkbox"
+  name="ampmike-box"
+  />
+  );
+  function handleAmpMike() {
+    if (document.getElementById('ampmike-checkbox').value === true) {setAmpMike(true);}
+    else if (document.getElementById('ampmike-checkbox').value === false) {setAmpMike(false);}
+  }
+}
+
+export function SourceMikeComponent() {
+  const [sourcemike, setSourceMike] = useState(Boolean);
+  return (
+  <input
+  type="checkbox"
+  onChange={handleSourceMike}
+  value={sourcemike}
+  id="sourcemike-checkbox"
+  name="sourcemike-box"
+  />
+  );
+  function handleSourceMike() {
+    if (document.getElementById('sourcemike-checkbox').value === true) {setSourceMike(true);}
+    else if (document.getElementById('sourcemike-checkbox').value === false) {setSourceMike(false);}
+  }
+}
+
+export function CenterMikeComponent() {
+  const [centermike, setCenterMike] = useState(Boolean);
+  return (
+  <input
+  type="checkbox"
+  onChange={handleCenterMike}
+  value={centermike}
+  id="centermike-checkbox"
+  name="centermike-box"
+  />
+  );
+  function handleCenterMike() {
+    if (document.getElementById('centermike-checkbox').value === true) {setCenterMike(true);}
+    else if (document.getElementById('sourcemike-checkbox').value === false) {setCenterMike(false);}
+  }
+}
+
+// UPLOAD/SAVE STUFF
+
 export function uploadStand(e) {
   e.preventDefault();
   fetch("http://98.59.100.219:3082/matchinput", {
@@ -272,10 +365,15 @@ export function uploadStand(e) {
         climbed: climbed,
         parked: parked,
         harmony: harmony,
-        trap: trap
+        trap: trap,
+        offeredcoop: offeredcoop,
+        didcoop: didcoop,
+
      })})
 }
   
+// function for saving to local storage. should be used when the http request fails, not
+// implemented yet.
 export function saveStand(e) {
   window.event.preventDefault();
   localStorage.setItem(localStorage.getItem('username').value + '-match-' + document.getElementById('match-input').value,JSON.stringify({
@@ -350,12 +448,25 @@ export function Stand() {
             <TrapComponent />
         <h3 className='drops-text'>Drops</h3>
             <DropsComponent />
-        <h3 className='climbed-text'>Robot climbed</h3>
-            <ClimbedComponent />
-        <h3 className='parked-text'>Robot parked</h3>
-            <ParkedComponent />
-        <h3 className='harmony-text'>Robot got harmony</h3>
-            <HarmonyComponent />
+        <h3 className='endgame-text'>End game</h3>
+          <h3 className='climbed-text'>Robot climbed</h3>
+              <ClimbedComponent />
+         <h3 className='parked-text'>Robot parked</h3>
+              <ParkedComponent />
+         <h2 className='coop-text'>Co-op</h2>
+            <h3 className='coop-offer-text'>Offered Co-op</h3>
+              <OfferedCoopComponent />
+            <h3 className='coop-did-text'>Did Co-op</h3>
+              <DidCoopComponent />
+         <h2 className=''>Mike</h2>
+            <h3 className='ampmike-text'>Scored Amp Mike</h3>
+              <AmpMikeComponent />
+            <h3 className='ampmike-text'>Source Amp Mike</h3>
+              <SourceMikeComponent />
+            <h3 className='ampmike-text'>Scored Center Mike</h3>
+              <CenterMikeComponent />
+            <h3 className='harmony-text'>Got harmony</h3>
+              <HarmonyComponent />
             <br></br><br></br>
             <SubmitButton />
     </div>
