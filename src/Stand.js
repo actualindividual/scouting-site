@@ -20,6 +20,53 @@ let didcoop;
 let offeredcoop;
 
 
+// This function is part of my code cleanup effort.
+// It will help avoid using many components that do effectively the same thing
+// just to different variables, hopefully reducing file size and making the code
+// make more sense.
+// PARAMATER BREAKDOWN:
+// statevar: the state variable being used. This should be a boolean.
+// setStateVar: the state variable being used's changer function
+export function PlusMinusComponent(statevar, setStateVar) {
+  return(
+    <div>
+      <b id='displayvalue'>
+        {statevar}
+      </b><br></br><br></br>
+      <button onClick={() => setStateVar(statevar + 1)} className='normal-button'>
+        +
+      </button>
+      <button onClick={() => setAutoamp(autoamp - 1)} className='normal-button'>
+        -
+      </button>
+    </div>
+  );
+}
+
+// This function is part of my code cleanup effort.
+// It will help avoid using many components that do effectively the same thing
+// just to different variables, hopefully reducing file size and making the code
+// make more sense.
+// PARAMATER BREAKDOWN:
+// statevar: the state variable being used. This should be a number.
+// setStateVar: the state variable being used's changer function
+// id: the id of the component
+export function LeftZoneComponent(statevar, setStateVar, id ) {
+  return (
+  <input
+  type="checkbox"
+  onChange={handler}
+  value={statevar}
+  id={id}
+  name='checkbox'
+  />
+  );
+  function handler() { // internal function that doesn't exist outside of the component's function
+    if (document.getElementById('zone-checkbox').value === true) {setStateVar(true);}
+    else if (document.getElementById('zone-checkbox').value === false) {setState(false);}
+  }
+}
+
 
 
 export function redbtnfunc() {
