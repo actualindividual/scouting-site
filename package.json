@@ -6,7 +6,6 @@
   "dependencies": {
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.1",
-    "js-cookie": "^3.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-native": "^0.73.4",
@@ -21,7 +20,8 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "gh-deploy": "gh-pages -d build",
+    "aws-start": "serve -s build -l 3082",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "dotenv": "^16.4.5",
-    "express": "^4.18.3",
+    "express": "^4.19.2",
     "gh-pages": "^6.1.1",
     "http-proxy-middleware": "^2.0.6",
     "morgan": "^1.10.0"

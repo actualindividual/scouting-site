@@ -194,10 +194,10 @@ export function Stand() {
   }
   function uploadStand(e) {
     e.preventDefault();
-      fetch("http://98.59.100.219:3082/matchinput", {
+      fetch('localhost:3000', {
          method: 'POST', 
          //credentials: 'include',
-         headers: {'content-Type': 'application/json'}, 
+         headers: {'Content-Type':"application/json;charset=UTF-8"}, 
          body: JSON.stringify({
             "username": localStorage.getItem('username'),
             "email": localStorage.getItem('email'),
