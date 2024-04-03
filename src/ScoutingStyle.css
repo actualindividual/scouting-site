@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:weight@style');
+
+:root{
+	
+	/* Light Blue CSS */
+	/* --FormSectionColor: rgb(238, 250, 255);
+	--FormSectionShadowColor: rgb(178, 216, 228);
+	--BackgroundColorTop: rgb(212, 238, 247);
+	--BackgroundColorBottom: rgb(212, 238, 247);
+	--DisplayColor: rgb(255, 255, 255);
+	--TextColor: rgb(0, 0, 0);  */
+
+	/* Navy Blue Css */
+	/* --FormSectionColor: rgb(45, 41, 168);
+	--FormSectionShadowColor: rgb(39, 35, 149);
+	--BackgroundColorTop: rgb(13, 12, 47);
+	--BackgroundColorBottom: rgb(13, 12, 47);
+	--DisplayColor: rgb(26, 23, 122);
+	--TextColor: rgb(255, 255, 255); */
+
+	/* Gradient CSS */
+	--FormSectionShadowColor: rgb(39, 35, 149);
+	--FormSectionColor: #cad1ff;
+	--BackgroundColorTop: #C5BDFA;
+	--BackgroundColorBottom: #688cd7;
+	--DisplayColor: rgb(255, 255, 255);
+	--TextColor: #221f78;
+}
+
+*{
+	color: var(--TextColor);
+	margin: 0;
+	padding: 0;
+	font-family: "poppins", sans-serif;
+	/* font-family: sans-serif; */
+}
+
+#navBar{
+    width:100vw;
+    height:30px;
+
+    background:var(--FormSectionColor);
+
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+#navBar a{
+	margin: 6px;
+
+	color: var(--TextColor);
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.indexButton{
+	border: 0;
+	margin-top: 8px;
+	font-weight: bold;
+	height: 30px;
+	width: 170px;
+	font-size: large;
+	border-radius: 10px;
+    background:var(--FormSectionColor);
+}
+
+#contentMatch, #contentPit, #contentIndex{
+	height: 1500px;
+	width: 100vw;
+
+	background: linear-gradient(var(--BackgroundColorTop),  
+		var(--BackgroundColorBottom));
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#contentPit{
+	height: 1100px;
+}
+
+#contentIndex{
+	height: calc(100vh - 30px);
+	-webkit-height: calc(100vh - 30px);
+	-moz-height: calc(100vh - 30px);
+}
+
+#birdImg{
+	height: 300px;
+}
+.content h1{
+	margin-top: 5px;
+
+	color: var(--TextColor);
+	font-weight: bold;
+}
+
+.formSection{
+	width: 240px;
+
+	padding: 10px;
+	border-radius: 10px;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 20px;
+
+	background: var(--FormSectionColor);
+	/* box-shadow: 10px 10px 5px  var(--FormSectionShadowColor);; */
+}
+
+.numberInput{
+	border: 0;
+	width: 60px;
+
+	border-radius: 6px;
+	text-align: center;
+
+	background-color: var(--DisplayColor);
+	color:var(--TextColor);
+	
+	font-weight: bold;
+}
+
+.TeamDisplayInfo{
+	border: 0;
+	border-radius: 6px;
+
+	background-color:var(--DisplayColor);
+
+	margin: 2px;
+	width: 100px;
+
+	text-align: center;
+	
+	color:var(--TextColor);
+	font-weight: bold;
+}
+
+textarea{
+	resize: none; 
+
+	width: 230px;
+	height: 100px;
+
+	text-align: left;
+	margin-top: 5px;
+
+	border: 0;
+	border-radius: 6px;
+	padding:2px;
+
+	background-color:var(--DisplayColor);
+	color:var(--TextColor);
+	font-weight: bold;
+}
+
+.AutoDisplayInput, .TeleDisplayInfo, 
+.EndGameDisplayInfo, .HumanDisplayInfo,
+.BuildDisplayInfo, .PlayStyleDisplayInfo{
+	background-color:var(--DisplayColor);
+	border: 0;
+	border-radius: 6px;
+
+	margin: 2px;
+	width: 110px;
+
+	text-align: center;
+
+	color:var(--TextColor);
+	font-weight: bold;
+}
+
+.CoOpInfoDisplay{
+	border: 0;
+	border-radius: 6px;
+	background-color:var(--DisplayColor);
+
+	margin: 2px;
+	width: 120px;
+
+	text-align: center;
+
+	color: var(--TextColor);
+	font-weight: bold;
+}
+
+.SelectorInfo{
+	border: 0;
+	width: 60px;
+
+	border-radius: 6px;
+
+	text-align: center;
+	background-color:var(--DisplayColor);
+
+	color: var(--TextColor);
+	font-weight: bold;
+}
+
+.endCheckBox{
+	border: 0;
+	accent-color: rgb(169, 158, 252);
+}
+
+#sumbitButton{
+	width: 230px;
+	background-color:var(--DisplayColor);
+
+	font-size: large;
+}
+
+#scoreShow{
+	width: 200px;
+}
+
+#TrapSelectorInfo{
+	width:50px;
+}
+
+#TrapSelector{
+	width:120px;
+}
+
+#ampMikeSelector, #sourceMikeSelector, #centerMikeSelector{
+	width: 100px;
+}
+
+#DriveTrainSelect, #IntakeSelect{
+	width: 90px;
+}
+
+#bAuto{
+	width:78px;
+}
+
+#PlaySpeaker{
+	width: 70px;
+}
+
+#PlayAmp{
+	width: 66px;
+}

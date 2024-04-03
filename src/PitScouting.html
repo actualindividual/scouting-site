@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+	<title>Pit Scouting</title>
+	<link rel="stylesheet" type="text/css" href="ScoutingStyle.css">
+</head>
+<body>
+    <div id="navBar">
+		<a href="index.html">Home<a> |
+		<a href="MatchScouting.html">Match Scouting<a>
+	</div>
+    <form id="contentPit">
+        <h1>Pit Scouting</h1>
+        <div class="formSection" id="TeamInfoDiv">
+			<h2>Team Info</h2>
+			<div>
+				<input type="text" value="Team Number" class="TeamDisplayInfo" readonly>
+				<input type="number" class="numberInput" id="TeamNumber">
+			</div>
+		</div>
+        <div class="formSection" id="BuildInfoDiv">
+			<h2>
+				Build Info
+			</h2>
+			<div>
+				<input type="text" value="Drive Train" class="BuildDisplayInfo"  readonly>
+				<select class="SelectorInfo" id="DriveTrainSelect">
+					<option value="Swerve">Swerve</option>
+					<option value="Tank">Tank</option>
+					<option value="Omni">Omni</option>
+                    <option value="Mecanum">Mecanum</option>
+                    <option value="Other">Other</option>
+				</select>
+			</div>
+			<div>
+				<input type="text" value="Intake" class="BuildDisplayInfo">
+				<select class="SelectorInfo" id="IntakeSelect">
+					<option value="Ground">Ground</option>
+					<option value="Source">Source</option>
+					<option value="Both">Both</option>
+				</select>
+			</div>
+		</div>
+        <div class="formSection" id="AutoInfoDiv">
+			<h2>PlayStyle</h2>
+			<div>
+				<input type="text" value="Best Auto:" class="PlayStyleDisplayInfo" id="bAuto" readonly>
+				<input type="button" value="Speaker" class="PlayStyleDisplayInfo" id="PlaySpeaker">
+				<input type="button" value="Amp" class="PlayStyleDisplayInfo" id="PlayAmp">
+			</div>
+			<textarea id="PlayStyle" readonly></textarea>
+			<div>
+				<input type="button" value="Clear" class="PlayStyleDisplayInfo" >
+				<input type="button" value="Remove" class="PlayStyleDisplayInfo" >
+			</div>
+			<div>
+				<input type="text" value="Defense" class="TeamDisplayInfo" readonly>
+				<select id="leftZoneSelector" class="numberInput">
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>
+				</select>
+			</div>
+		</div>
+		<div class="formSection">
+			<h2>
+				Abilites
+			</h2>
+			<div>
+				<div>
+					<input type="text" value="Speaker" class="EndGameDisplayInfo" readonly>
+					<input type="checkbox" class="endCheckBox">
+				</div>
+				<div>
+					<input type="text" value="Amp" class="EndGameDisplayInfo" readonly>
+					<input type="checkbox" class="endCheckBox">
+				</div>
+			</div>
+			<div>
+				<input type="text" value="Under Stage" class="EndGameDisplayInfo" readonly>
+				<input type="checkbox" class="endCheckBox">
+			</div>
+			<div>
+				<input type="text" value="Climb" class="EndGameDisplayInfo" readonly>
+				<input type="checkbox" class="endCheckBox">
+			</div>
+			<div>
+				<input type="text" value="Harmony" class="EndGameDisplayInfo" readonly>
+				<input type="checkbox" class="endCheckBox">
+			</div>
+			<div>
+				<input type="text" value="Trap" class="EndGameDisplayInfo" readonly>
+				<input type="checkbox" class="endCheckBox">
+			</div>
+			<div>
+				<input type="text" value="Human player" class="TeamDisplayInfo" readonly>
+				<select id="leftZoneSelector" class="numberInput">
+					<option value="Yes">High</option>
+					<option value="No">Med</option>
+					<option value="No">Low</option>
+				</select>
+			</div>
+		</div>
+		<div class="formSection" id="AutoInfoDiv">
+			<h2>Notes</h2>
+			<textarea id="PlayStyle"></textarea>
+		</div>
+		<div class="formSection">
+			<input type="submit", class="TeamDisplayInfo", id="sumbitButton">
+		</div>
+    </form>
+</body>
+</html>
