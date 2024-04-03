@@ -1,27 +1,57 @@
 import './Stand.css'
 import { useState } from 'react';
 
-// These are all collected from user through forms. If they aren't declared here the app throws an error
-let alliance;
-//let team;
-let left_zone;
-let drops;
-//let scoutname;
-let parked;
-let climbed;
-let harmony;
-let trap;
-let autoamp = 0;
-let autospeaker = 0;
-let teleamp = 0;
-let telespeaker_a = 0;
-let telespeaker_u = 0;
-let didcoop;
-let offeredcoop;
+let alliance = 'blue';
+// This function is part of my code cleanup effort.
+// It will help avoid using many components that do effectively the same thing
+// just to different variables, hopefully reducing file size and making the code
+// make more sense.
+// PARAMATER BREAKDOWN:
+// statevar: the state variable being used. This should be a boolean.
+// setStateVar: the state variable being used's changer function
+// id: id for the display value.
+export function PlusMinusComponent({statevar, setStateVar, id}) {
+  return(
+    <div>
+      <b id={id}>
+        {statevar} 
+      </b><br></br><br></br>
+      <button onClick={() => setStateVar(statevar + 1)} className='plusminus-button'>
+        +
+      </button>
+      <button onClick={() => setStateVar(statevar - 1)} className='plusminus-button'>
+        -
+      </button>
+    </div>
+  );
+}
+
+// This function is part of my code cleanup effort.
+// It will help avoid using many components that do effectively the same thing
+// just to different variables, hopefully reducing file size and making the code
+// make more sense.
+// PARAMATER BREAKDOWN:
+// statevar: the state variable being used. This should be a number.
+// setStateVar: the state variable being used's changer function
+// id: the id of the component
+export function CheckboxComponent({statevar, setStateVar, id}) {
+  return (
+  <input
+  type="checkbox"
+  onChange={handler}
+  value={statevar}
+  id={id}
+  name='checkbox'
+  />
+  );
+  function handler() { // internal function that doesn't exist outside of the component's function
+    if (document.getElementById(id).value === true) {setStateVar(true);}
+    else if (document.getElementById(id).value === false) {setStateVar(false);}
+  }
+}
 
 
-
-
+// Alliance buttons and their functions
 export function redbtnfunc() {
   alliance = "red";  
   console.log(alliance);
@@ -45,6 +75,9 @@ export function BlueButton() {
     </button>
   );
 }
+
+// Text inputs
+
 export function ScoutNameInput() {
   return (
     <input type='text' id="scoutname-input">
@@ -65,283 +98,9 @@ export function TeamNumInput() {
   );
 }
 
-export function AutoAmpComponent() {
-  const [autoamp, setAutoamp] = useState(0);
-  return(
-    <div>
-      <b id='autoampdisp'>
-        {autoamp}
-      </b><br></br><br></br>
-      <button onClick={() => setAutoamp(autoamp + 1)} className='normal-button'>
-        +
-      </button>
-      <button onClick={() => setAutoamp(autoamp - 1)} className='normal-button'>
-        -
-      </button>
-    </div>
-  );
-}
-
-export function AutoSpeakerComponent() {
-  const [autospeaker, setAutospeaker] = useState(0);
-  return(
-    <div>
-      <b id='autospeakerdisp'>
-        {autospeaker}
-      </b><br></br><br></br>
-      <button onClick={() => setAutospeaker(autospeaker + 1)} className='normal-button'>
-        +
-      </button>
-      <button onClick={() => setAutospeaker(autospeaker - 1)} className='normal-button'>
-        -
-      </button>
-    </div>
-  );
-}
-
-export function LeftZoneComponent() {
-  const [left_zone, setLeftZone] = useState(Boolean);
-  return (
-  <input
-  type="checkbox"
-  onChange={handleLeftZone}
-  value={left_zone}
-  id="zone-checkbox"
-  name="lz-cb"
-  />
-  );
-  function handleLeftZone() {
-    if (document.getElementById('zone-checkbox').value === true) {setLeftZone(true);}
-    else if (document.getElementById('zone-checkbox').value === false) {setLeftZone(false);}
-  }
-}
-
-export function TeleAmpComponent() {
-  const [teleamp, setTeleamp] = useState(0);
-  return(
-    <div>
-      <b id='teleampdisp'>
-        {teleamp}
-      </b><br></br><br></br>
-      <button onClick={() => setTeleamp(teleamp + 1)} className='normal-button'>
-        +
-      </button>
-      <button onClick={() => setTeleamp(teleamp - 1)} className='normal-button'>
-        -
-      </button>
-    </div>
-  );
-}
-
-export function TeleSpeakerUnamplifiedComponent() {
-  const [telespeaker_unamplified, setTelespeakerUnamplified] = useState(0);
-  return(
-    <div>
-      <b id='telespeakerunampdisp'>
-        {telespeaker_unamplified}
-      </b><br></br><br></br>
-      <button onClick={() => setTelespeakerUnamplified(telespeaker_unamplified + 1)} className='normal-button'>
-        +
-      </button>
-      <button onClick={() => setTelespeakerUnamplified(telespeaker_unamplified - 1)} className='normal-button'>
-        -
-      </button>
-    </div>
-  );
-}
-
-export function TeleSpeakerAmplifiedComponent() {
-  const [telespeaker_amplified, setTelespeakerAmplified] = useState(0);
-  return(
-    <div>
-      <b id='telespeakerampdisp'>
-        {telespeaker_amplified}
-      </b><br></br><br></br>
-      <button onClick={() => setTelespeakerAmplified(telespeaker_amplified + 1)} className='normal-button'>
-        +
-      </button>
-      <button onClick={() => setTelespeakerAmplified(telespeaker_amplified - 1)} className='normal-button'>
-        -
-      </button>
-    </div>
-  );
-}
-
-export function TrapComponent() {
-  const [trap, setTrap] = useState(0);
-  return(
-    <div>
-      <b id='trapdisp'>
-        {trap}
-      </b><br></br><br></br>
-      <button onClick={() => setTrap(trap + 1)} className='normal-button'>
-        +
-      </button>
-      <button onClick={() => setTrap(trap - 1)} className='normal-button'>
-        -
-      </button>
-    </div>
-  );
-}
-
-export function DropsComponent() {
-  const [drops, setDrops] = useState(0);
-  return(
-    <div>
-      <b id='dropsdisp'>
-        {drops}
-      </b><br></br><br></br>
-      <button onClick={() => setDrops(drops + 1)} className='normal-button'>
-        +
-      </button>
-      <button onClick={() => setDrops(drops - 1)} className='normal-button'>
-        -
-      </button>
-    </div>
-  );
-}
-
-// in all honesty these should just be one component with changable state values
-export function ClimbedComponent() {
-  const [climbed, setClimbed] = useState(Boolean);
-  return (
-  <input
-  type="checkbox"
-  onChange={handleClimbed}
-  value={climbed}
-  id="climbed-checkbox"
-  name="climb-cb"
-  />
-  );
-  function handleClimbed() {
-    if (document.getElementById('climbed-checkbox').value === true) {setClimbed(true);}
-    else if (document.getElementById('climbed-checkbox').value === false) {setClimbed(false);}
-  }
-}
-
-export function ParkedComponent() {
-  const [parked, setParked] = useState(Boolean);
-  return (
-  <input
-  type="checkbox"
-  onChange={handleParked}
-  value={parked}
-  id="parked-checkbox"
-  name="park-box"
-  />
-  );
-  function handleParked() {
-    if (document.getElementById('parked-checkbox').value === true) {setParked(true);}
-    else if (document.getElementById('parked-checkbox').value === false) {setParked(false);}
-  }
-}
-
-export function HarmonyComponent() {
-  const [harmony, setHarmony] = useState(Boolean);
-  return (
-  <input
-  type="checkbox"
-  onChange={handleHarmony}
-  value={harmony}
-  id="harmony-checkbox"
-  name="harm-box"
-  />
-  );
-  function handleHarmony() {
-    if (document.getElementById('harmony-checkbox').value === true) {setHarmony(true);}
-    else if (document.getElementById('harmony-checkbox').value === false) {setHarmony(false);}
-  }
-}
-
-export function OfferedCoopComponent() {
-  const [offeredcoop, setOfferedCoop] = useState(Boolean);
-  return (
-  <input
-  type="checkbox"
-  onChange={handleOfferedCoop}
-  value={offeredcoop}
-  id="off-coop-checkbox"
-  name="off-coop-box"
-  />
-  );
-  function handleOfferedCoop() {
-    if (document.getElementById('off-coop-checkbox').value === true) {setOfferedCoop(true);}
-    else if (document.getElementById('off-coop-checkbox').value === false) {setOfferedCoop(false);}
-  }
-}
-
-export function DidCoopComponent() {
-  const [didcoop, setDidCoop] = useState(Boolean);
-  return (
-  <input
-  type="checkbox"
-  onChange={handleDidCoop}
-  value={didcoop}
-  id="did-coop-checkbox"
-  name="did-coop-box"
-  />
-  );
-  function handleDidCoop() {
-    if (document.getElementById('off-coop-checkbox').value === true) {setDidCoop(true);}
-    else if (document.getElementById('off-coop-checkbox').value === false) {setDidCoop(false);}
-  }
-}
-
-// MIKE STUFF
-
-export function AmpMikeComponent() {
-  const [ampmike, setAmpMike] = useState(Boolean);
-  return (
-  <input
-  type="checkbox"
-  onChange={handleAmpMike}
-  value={ampmike}
-  id="ampmike-checkbox"
-  name="ampmike-box"
-  />
-  );
-  function handleAmpMike() {
-    if (document.getElementById('ampmike-checkbox').value === true) {setAmpMike(true);}
-    else if (document.getElementById('ampmike-checkbox').value === false) {setAmpMike(false);}
-  }
-}
-
-export function SourceMikeComponent() {
-  const [sourcemike, setSourceMike] = useState(Boolean);
-  return (
-  <input
-  type="checkbox"
-  onChange={handleSourceMike}
-  value={sourcemike}
-  id="sourcemike-checkbox"
-  name="sourcemike-box"
-  />
-  );
-  function handleSourceMike() {
-    if (document.getElementById('sourcemike-checkbox').value === true) {setSourceMike(true);}
-    else if (document.getElementById('sourcemike-checkbox').value === false) {setSourceMike(false);}
-  }
-}
-
-export function CenterMikeComponent() {
-  const [centermike, setCenterMike] = useState(Boolean);
-  return (
-  <input
-  type="checkbox"
-  onChange={handleCenterMike}
-  value={centermike}
-  id="centermike-checkbox"
-  name="centermike-box"
-  />
-  );
-  function handleCenterMike() {
-    if (document.getElementById('centermike-checkbox').value === true) {setCenterMike(true);}
-    else if (document.getElementById('sourcemike-checkbox').value === false) {setCenterMike(false);}
-  }
-}
 
 // UPLOAD/SAVE STUFF
-
+/*
 export function uploadStand(e) {
   e.preventDefault();
   fetch("http://98.59.100.219:3082/matchinput", {
@@ -370,11 +129,11 @@ export function uploadStand(e) {
         didcoop: didcoop,
 
      })})
-}
+} */
   
 // function for saving to local storage. should be used when the http request fails, not
 // implemented yet.
-export function saveStand(e) {
+/*export function saveStand(e) {
   window.event.preventDefault();
   localStorage.setItem(localStorage.getItem('username').value + '-match-' + document.getElementById('match-input').value,JSON.stringify({
         username: localStorage.getItem('username').value,
@@ -397,78 +156,126 @@ export function saveStand(e) {
         trap: trap
   })
 )}
+*/
 
-function bigSubmitStand() {
-  //submitHandler();
-  saveStand(window.event);
-  /*try {
-    uploadStand();
-  } catch(err) {
-    saveStand();
-  }*/
-}
-
-function SubmitButton() {
+/*function SubmitButton() {
   return (
   <button onClick={bigSubmitStand} id='submit-button'>Submit</button>
   );
-}
+}*/
 
 export function Stand() {
+  const [autoamp, setAutoamp] = useState(0);
+  const [autospeaker, setAutospeaker] = useState(0);
+  const [left_zone, setLeftZone] = useState(false);
+  const [teleamp, setTeleamp] = useState(0); 
+  const [telespeaker_unamplified, setTelespeakerUnamplified] = useState(0);
+  const [telespeaker_amplified, setTelespeakerAmplified] = useState(0);
+  const [trap, setTrap] = useState(0);
+  const [drops, setDrops] = useState(0);
+  const [climbed, setClimbed] = useState(false);
+  const [parked, setParked] = useState(false);
+  const [harmony, setHarmony] = useState(false);
+  const [offeredcoop, setOfferedCoop] = useState(false);
+  const [didcoop, setDidCoop] = useState(false);
+  const [ampmike, setAmpMike] = useState(false);
+  const [sourcemike, setSourceMike] = useState(false);
+  const [centermike, setCenterMike] = useState(false);
+  function bigSubmitStand() {
+    uploadStand(window.event);
+    //saveStand(window.event);
+    /*try {
+      uploadStand();
+    } catch(err) {
+      saveStand();
+    }*/
+  }
+  function uploadStand(e) {
+    e.preventDefault();
+      fetch("http://98.59.100.219:3082/matchinput", {
+         method: 'POST',
+         headers: new Headers({'content-type': 'application/json'}),
+         body: JSON.stringify({
+            username: localStorage.getItem('username').value,
+            email: localStorage.getItem('email').value,
+            password: localStorage.getItem('password').value, // should be hashed
+            scoutname: document.getElementById('scoutname-input').value,  
+            team: document.getElementById('tn-input').value,
+            matchNumber: document.getElementById('match-input').value,
+            alliance: alliance,
+            autoAmpPoints: autoamp,
+            autoSpeakerPoints: autospeaker,
+            autoLeftZone: left_zone,
+            teleAmpPoints: teleamp,
+            teleSpeakerPoints: telespeaker_unamplified,
+            teleSpeakerAmplifiedNotes: telespeaker_amplified,
+            drops: drops,
+            climbed: climbed,
+            parked: parked,
+            harmony: harmony,
+            trap: trap,
+            offeredcoop: offeredcoop,
+            didcoop: didcoop 
+         })})
+    }
   return (
-      <div className='container'>
-        <h1>Stand Scouting</h1>
+    <div className='stand-container'>
+      <div className='basic-info'>
         <h2 className="basicinfo-text">Basic Info</h2>
-        <h3 className='scout-name'>Scout name</h3>
-          <ScoutNameInput />
-        <h3 className='matchnumber-text'>Match Number</h3>
-          <MatchNumInput />
-        <h3 className='tn-text'>Team Number</h3>
-          <TeamNumInput />
-        <h3 className='alliance-text'>Alliance</h3>
-          <RedButton />
-          <BlueButton />
-
-      <h2 className='auto-points-text'>Auto Points</h2>
-        <h3 className='auto-amp-text'>Amp score</h3>
-            <AutoAmpComponent />
-        <h3 className='auto-speaker-text'>Speaker score</h3>
-            <AutoSpeakerComponent />
-        <h3 className='left-zone-text'>Left zone</h3>
-            <LeftZoneComponent />
-
+          <h3 className='scout-name'>Scout name</h3>
+            <ScoutNameInput />
+            <h3 className='matchnumber-text'>Match Number</h3>
+              <MatchNumInput />
+            <h3 className='tn-text'>Team Number</h3>
+              <TeamNumInput />
+            <h3 className='alliance-text'>Alliance</h3>
+              <RedButton />
+              <BlueButton />
+      </div>
+      <div className='auto-div'>
+        <h2 className='auto-points-text'>Auto Points</h2>
+         <h3 className='auto-amp-text'>Amp score</h3>
+            <PlusMinusComponent statevar={autoamp} setStateVar={setAutoamp} id={"amp-score"}/>
+         <h3 className='auto-speaker-text'>Speaker score</h3>
+            <PlusMinusComponent statevar={autospeaker} setStateVar={setAutospeaker} id={"speaker-score"}/>
+         <h3 className='left-zone-text'>Left zone</h3>
+            <CheckboxComponent statevar={left_zone} setStateVar={setLeftZone} id={"leftzone-cb"}/>
+      </div>
+      <div className='tele-div'>
       <h2 className='teleop-points-text'>Teleop Points</h2>
         <h3 className='teleop-amp-text'>Amp score</h3>
-            <TeleAmpComponent />
+            <PlusMinusComponent statevar={teleamp} setStateVar={setTeleamp} id={"teleamp"}/>
         <h3 className='teleop-speaker-text1'>Unamplified Speaker Score</h3>
-            <TeleSpeakerUnamplifiedComponent />
+            <PlusMinusComponent statevar={telespeaker_unamplified} setStateVar={setTelespeakerUnamplified} id={"telespeaker-u"}/>
         <h3 className='teleop-speaker-text2'>Amplified Speaker Score</h3>
-            <TeleSpeakerAmplifiedComponent />
+            <PlusMinusComponent statevar={telespeaker_amplified} setStateVar={setTelespeakerAmplified} id={"telespeaker-a"}/>
         <h3 className='trapscore-text'>Trap score</h3>
-            <TrapComponent />
+            <PlusMinusComponent statevar={trap} setStateVar={setTrap} id={"trap-score"}/>
         <h3 className='drops-text'>Drops</h3>
-            <DropsComponent />
-        <h3 className='endgame-text'>End game</h3>
+            <PlusMinusComponent statevar={drops} setStateVar={setDrops} id={"drops-score"}/>
+      </div>
+      <div className='endgame-div'>
+        <h2 className='endgame-text'>End game</h2>
           <h3 className='climbed-text'>Robot climbed</h3>
-              <ClimbedComponent />
+              <CheckboxComponent statevar={climbed} setStateVar={setClimbed} id={"climbed-cb"}/>
          <h3 className='parked-text'>Robot parked</h3>
-              <ParkedComponent />
+              <CheckboxComponent statevar={parked} setStateVar={setParked} id={"parked_cb"}/>
          <h2 className='coop-text'>Co-op</h2>
             <h3 className='coop-offer-text'>Offered Co-op</h3>
-              <OfferedCoopComponent />
+              <CheckboxComponent statevar={offeredcoop} setStateVar={setOfferedCoop} id={"offered-coop-cb"}/>
             <h3 className='coop-did-text'>Did Co-op</h3>
-              <DidCoopComponent />
-         <h2 className=''>Mike</h2>
+              <CheckboxComponent statevar={didcoop} setStateVar={setDidCoop} id={"did-coop-cb"}/>
+         <h2 className='mike-text'>Mike</h2>
             <h3 className='ampmike-text'>Scored Amp Mike</h3>
-              <AmpMikeComponent />
-            <h3 className='ampmike-text'>Source Amp Mike</h3>
-              <SourceMikeComponent />
+              <CheckboxComponent statevar={ampmike} setStateVar={setAmpMike} id={"scored-amp-mike-cb"}/>
+            <h3 className='ampmike-text'>Scored Amp Mike</h3>
+              <CheckboxComponent statevar={sourcemike} setStateVar={setSourceMike} id={"scored-source-mike-cb"}/>
             <h3 className='ampmike-text'>Scored Center Mike</h3>
-              <CenterMikeComponent />
+              <CheckboxComponent statevar={centermike} setStateVar={setCenterMike} id={"scored-center-mike-cb"}/>
             <h3 className='harmony-text'>Got harmony</h3>
-              <HarmonyComponent />
-            <br></br><br></br>
-            <SubmitButton />
+              <CheckboxComponent statevar={harmony} setStateVar={setHarmony} id={"harmony-cb"}/>
+      </div>
+      <button onClick={bigSubmitStand} id='submit-button'>Submit</button>
     </div>
   );
 }
