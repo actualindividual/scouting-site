@@ -194,7 +194,7 @@ export function Stand() {
   }
   function uploadStand(e) {
     e.preventDefault();
-      fetch('localhost:3000', {
+      fetch('http://localhost:3000', {
          method: 'POST', 
          //credentials: 'include',
          headers: {'Content-Type':"application/json;charset=UTF-8"}, 
