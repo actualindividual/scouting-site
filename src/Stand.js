@@ -1,6 +1,8 @@
 import './Stand.css'
 import { useState } from 'react';
 
+//const url = 'https://thingproxy.freeboard.io/fetch/' + encodeURIComponent('http://98.59.100.219:3082/matchinput');
+
 let alliance = 'blue';
 // This function is part of my code cleanup effort.
 // It will help avoid using many components that do effectively the same thing
@@ -194,6 +196,7 @@ export function Stand() {
     e.preventDefault();
       fetch("http://98.59.100.219:3082/matchinput",{mode: "no-cors"}, {
          method: 'POST',
+         credentials: 'include',
          headers: new Headers({'content-type': 'application/json'}),
          body: JSON.stringify({
             username: localStorage.getItem('username').value,
