@@ -221,7 +221,7 @@ export function Stand() {
             "didcoop": didcoop,
             "ampmike": ampmike,
             "sourcemike": sourcemike,
-            "centermike": centermike,
+            "centermike": centermike
          })}).then(result => console.log('success====:', result))
          .catch(error => console.log('error============:', error));
     }
