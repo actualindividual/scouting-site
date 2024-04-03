@@ -1,6 +1,6 @@
 import './App.css';
 import { useState } from 'react';
-import { Stand } from './Stand.js';
+import { Stand } from './Stand.js'
 import { Pit } from './Pit.js';
 
 export function TopButtons({csop}) {
@@ -54,6 +54,7 @@ function LoginButton() {
       localStorage.setItem('username', document.getElementById('username-input').value);
       localStorage.setItem('email', document.getElementById('email-input').value);
       localStorage.setItem('password', document.getElementById('password-input').value);
+      window.location.reload(false);
     }
 }
 
@@ -66,7 +67,6 @@ export function Login() {
           <br></br>
           <LoginButton />
           <br></br>
-          <h2>Refresh the page after submission.</h2>
       </div>
   )
 }
