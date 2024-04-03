@@ -192,7 +192,7 @@ export function Stand() {
   }
   function uploadStand(e) {
     e.preventDefault();
-      fetch("http://98.59.100.219:3082/matchinput", {
+      fetch("http://98.59.100.219:3082/matchinput",{mode: "no-cors"}, {
          method: 'POST',
          headers: new Headers({'content-type': 'application/json'}),
          body: JSON.stringify({
@@ -215,7 +215,10 @@ export function Stand() {
             harmony: harmony,
             trap: trap,
             offeredcoop: offeredcoop,
-            didcoop: didcoop 
+            didcoop: didcoop,
+            ampmike: ampmike,
+            sourcemike: sourcemike,
+            centermike: centermike,
          })})
     }
   return (
@@ -268,7 +271,7 @@ export function Stand() {
          <h2 className='mike-text'>Mike</h2>
             <h3 className='ampmike-text'>Scored Amp Mike</h3>
               <CheckboxComponent statevar={ampmike} setStateVar={setAmpMike} id={"scored-amp-mike-cb"}/>
-            <h3 className='ampmike-text'>Scored Amp Mike</h3>
+            <h3 className='ampmike-text'>Scored Source Mike</h3>
               <CheckboxComponent statevar={sourcemike} setStateVar={setSourceMike} id={"scored-source-mike-cb"}/>
             <h3 className='ampmike-text'>Scored Center Mike</h3>
               <CheckboxComponent statevar={centermike} setStateVar={setCenterMike} id={"scored-center-mike-cb"}/>

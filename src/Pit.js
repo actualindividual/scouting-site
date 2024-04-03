@@ -1,4 +1,4 @@
-import data from './config.json';
+//import data from './config.json';
 import './Pit.css'; // I can't style the react-select boxes for some reason, and their docs are no help
 import { useState } from 'react';
 import Select from 'react-select';
@@ -159,6 +159,7 @@ function SubmitButton() {
 export function Pit() { // Component function for pit ui
 	return (
 		<div className='pit-component'>
+			<h1>Pit Scouting IS NOT stable or refined code at the moment.</h1>
 			<h1>Pit scouting</h1>
 				<h2>Basic Info</h2>
 					<h3 className='tn-text'>Team Number</h3>
