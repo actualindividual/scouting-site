@@ -223,7 +223,8 @@ export function Stand() {
             ampmike: ampmike,
             sourcemike: sourcemike,
             centermike: centermike,
-         })})
+         })}).then(result => console.log('success====:', result))
+         .catch(error => console.log('error============:', error));
     }
   return (
     <div className='stand-container'>
