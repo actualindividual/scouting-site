@@ -195,8 +195,8 @@ export function Stand() {
   function uploadStand(e) {
     e.preventDefault();
       fetch("http://98.59.100.219:3082/matchinput", {
-         method: 'POST',
-         mode: "no-cors",
+         method: 'post',
+         /*mode: "no-cors",*/
          credentials: 'include',
          headers: new Headers({'content-type': 'application/json'}),
          body: JSON.stringify({
