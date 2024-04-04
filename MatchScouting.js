@@ -212,7 +212,7 @@ function uploadStand() {
         "extranotes": document.getElementById("Extra Notes").value
     }
     console.log(data);
-    sendData("https://thingproxy.freeboard.io/fetch/http://98.59.100.219/matchinput", JSON.stringify(data));
+    sendData("https://cors-proxy.htmldriven.com/?url=http://98.59.100.219/matchinput", JSON.stringify(data));
 }
 
 var endgameScore = 0;
@@ -293,6 +293,7 @@ async function sendData(url, data) {
     try {
       const response = await fetch(url, {
         method: 'POST', // Use POST for sending data
+        mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: data
       });
