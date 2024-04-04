@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Scouting Site</title>
+	<link rel="stylesheet" type="text/css" href="ScoutingStyle.css">
+</head>
+<body>
+	<div id="navBar">
+		<a href="MatchScouting.html">Match Scouting<a> |
+		<a href="PitScouting.html">Pit Scouting<a></a>
+	</div>
+	<div id="contentIndex">
+		<h1>Welcome To</h1>
+		<h1>Chicken Scout</h1>
+		<img src="Bird.PNG" id="birdImg">
+		<input type="button" value="Pit Scouting" class="indexButtonHome" onclick="window.location='PitScouting.html';"></input>
+		<input type="button" value="Match Scouting" class="indexButtonHome"  onclick="window.location='MatchScouting.html';"></input>		
+		<input type="text" placeholder="Username" class="indexButtonLand"  id="UsernameInput"></input>		
+		<input type="text" placeholder="Email" class="indexButtonLand" id="EmailInput"></input>		
+		<input type="text" placeholder="Name" class="indexButtonLand" id="NameInput"></input>		
+		<input type="password" placeholder="Password" class="indexButtonLand" id="PasswordInput"></input>
+	</div>
+</body>
+<script scr="backend.js"></script>
+</html>

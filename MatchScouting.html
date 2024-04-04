@@ -12,12 +12,12 @@
 		<a href="index.html">Home<a> |
 		<a href="PitScouting.html">Pit Scouting<a>
 	</div>
-	<form  id="contentMatch" action="MatchAction.php" method="post">
+	<div  id="contentMatch">
 		<h1>Match Scouting</h1>
 		<div class="formSection" id="TeamInfoDiv">
 			<h2>Team Info</h2>
-			<div>
-				<input type="text" value="Team Number" class="TeamDisplayInfo" name="TeamNumber" readonly>
+				<div>
+					<input type="text" value="Team Number" class="TeamDisplayInfo" readonly>
 				<input type="number" class="numberInput" id="TeamNumber" >
 			</div>
 			<div>
@@ -25,7 +25,7 @@
 				<input type="number" class="numberInput" id="MatchNumber">
 			</div>
 			<div>
-				<input type="text" value="Alliance" class="TeamDisplayInfo" readonly>
+				<input type="text" value="A1lliance" class="TeamDisplayInfo" readonly>
                 <select id="AllianceSelector" class="numberInput">
                     <option value="blue">Blue</option>
                     <option value="red">Red</option>
@@ -92,7 +92,7 @@
 			</div>
 			<div>
 				<input type="text" value="Drops" class="TeleDisplayInfo" readonly>
-				<input type="number" class="numberInput">
+				<input type="number" class="numberInput" id="dropIn">
 			</div>
 		</div>
 		<div class="formSection">
@@ -167,7 +167,7 @@
 		</div>
 	</form>
 <body>
-<script src="MatchScouting.js"></script>
+<script src="backend.js"></script>
 </html>
 
 
