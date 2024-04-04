@@ -1,3 +1,6 @@
+src= "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+
+
 var totalScore = 0;
 
 //Auto Section Logic
@@ -212,7 +215,7 @@ function uploadStand() {
         "extranotes": document.getElementById("Extra Notes").value
     }
     console.log(data);
-    sendData("https://cors-proxy.htmldriven.com/?url=http://98.59.100.219/matchinput", JSON.stringify(data));
+    //sendData("https://cors-proxy.htmldriven.com/?url=http://98.59.100.219/matchinput", JSON.stringify(data));
 }
 
 var endgameScore = 0;
@@ -289,7 +292,8 @@ function isLit(){
     || document.getElementById("centerMikeSelector").value == "Score";
 }
 
-async function sendData(url, data) {
+// not using this anymore for obvious reasons
+/*async function sendData(url, data) {
     try {
       const response = await fetch(url, {
         method: 'POST', // Use POST for sending data
@@ -306,6 +310,4 @@ async function sendData(url, data) {
     } catch (error) {
       console.error('Error sending data:', error);
     }
-}
-  
- 
+} */
