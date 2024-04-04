@@ -67,7 +67,7 @@
 }
 
 #contentMatch, #contentPit, #contentIndex{
-	height: 1500px;
+	height: 1680px;
 	width: 100vw;
 
 	background: linear-gradient(var(--BackgroundColorTop),  
@@ -162,6 +162,7 @@ textarea{
 .AutoDisplayInput, .TeleDisplayInfo, 
 .EndGameDisplayInfo, .HumanDisplayInfo,
 .BuildDisplayInfo, .PlayStyleDisplayInfo{
+	font-size: 2;
 	background-color:var(--DisplayColor);
 	border: 0;
 	border-radius: 6px;

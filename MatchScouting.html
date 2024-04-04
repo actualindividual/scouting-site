@@ -16,9 +16,9 @@
 		<h1>Match Scouting</h1>
 		<div class="formSection" id="TeamInfoDiv">
 			<h2>Team Info</h2>
-				<div>
-					<input type="text" value="Team Number" class="TeamDisplayInfo" readonly>
-				<input type="number" class="numberInput" id="TeamNumber" >
+			<div>
+				<input type="text" value="Team Number" class="TeamDisplayInfo" readonly>
+				<input type="number" class="numberInput" id="TeamNumber">
 			</div>
 			<div>
 				<input type="text" value="Match Number" class="TeamDisplayInfo" readonly>
@@ -59,14 +59,14 @@
 			<h2>Co-Opertition</h2>
 			<div>
 				<input type="text" value="Offer Coopertition" class="CoOpInfoDisplay" readonly>
-                <select id="alliance" class="SelectorInfo">
+                <select id="offerCoopID" class="SelectorInfo">
                     <option value="false">False</option>
                     <option value="true">True</option>
                 </select>
 			</div>
 			<div>
 				<input type="text" value="Did Co-operate" class="CoOpInfoDisplay" readonly>
-                <select id="alliance" class="SelectorInfo">
+                <select id="didCoopID" class="SelectorInfo">
                     <option value="false">False</option>
                     <option value="true">True</option>
                 </select>
@@ -101,18 +101,15 @@
 			</h2>
 			<div>
 				<input type="text" value="Park" class="EndGameDisplayInfo" readonly>
-				<input type="checkbox" class="endCheckBox">
+				<input type="checkbox" id="ParkCheckbox" class="endCheckBox">
 			</div>
 			<div>
 				<input type="text" value="Onstage Climb" class="EndGameDisplayInfo" readonly>
-				<input type="checkbox" class="endCheckBox">
+				<input type="checkbox" class="endCheckBox" id="climbCheckBox">
 			</div>
 			<div>
 				<input type="text" value="Harmony" class="EndGameDisplayInfo" readonly>
-				<input type="checkbox" class="endCheckBox">
-			</div>
-			<div>
-				<h1></h1>
+				<input type="checkbox" class="endCheckBox" id="harmonyCheckBox">
 			</div>
 			<div>
 				<input type="text" value="Trap" class="EndGameDisplayInfo" id="TrapSelectorInfo" readonly>
@@ -124,7 +121,7 @@
 			</div>
 			<div>
 				<input type="text" value="Traps:" class="EndGameDisplayInfo" readonly>
-				<input type="number" class="numberInput">
+				<input type="number" class="numberInput" id="trapNumID">
 			</div>
 		</div>
 		<div class="formSection" id="HumanPlayerInfoDiv">
@@ -136,15 +133,13 @@
 				<select class="SelectorInfo" id="ampMikeSelector">
 					<option value="Miss">Miss</option>
 					<option value="Score">Score</option>
-					<option value="Score w/harmony">Score w/harmony</option>
 				</select>
 			</div>
 			<div>
 				<input type="text" value="Source Mike" class="HumanDisplayInfo" readonly>
 				<select class="SelectorInfo" id="sourceMikeSelector">
-					<option value="SelectorInfo">Miss</option>
+					<option value="Miss">Miss</option>
 					<option value="Score">Score</option>
-					<option value="Score w/harmony">Score w/harmony</option>
 				</select>
 			</div>
 			<div>
@@ -152,9 +147,12 @@
 				<select class="SelectorInfo" id="centerMikeSelector">
 					<option value="Miss">Miss</option>
 					<option value="Score">Score</option>
-					<option value="Score w/harmony">Score w/harmony</option>
 				</select>
 			</div>
+		</div>
+		<div class="formSection" id="AutoInfoDiv">
+			<h2>Extra Notes</h2>
+			<textarea id="Extra Notes"></textarea>
 		</div>
 		<div class="formSection">
 			<h2>
@@ -163,11 +161,11 @@
 			<input type="text", value="Total Points Scored: 0", class="TeamDisplayInfo", id="scoreShow", readonly>
 		</div>
 		<div class="formSection">
-			<input type="submit", class="TeamDisplayInfo", id="sumbitButton">
+			<input type="button", value="Sumbit" class="TeamDisplayInfo", id="sumbitButton">
 		</div>
 	</form>
 <body>
-<script src="backend.js"></script>
+<script src="MatchScouting.js"></script>
 </html>
 
 

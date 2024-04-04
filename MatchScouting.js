@@ -18,33 +18,15 @@ var AutoText = document.getElementById("AutoPlay");
 var AutoMoves = document.getElementById("AutoNumMoveDis");
 var AutoScoreText = document.getElementById("AutoScoreDis");
 
-var landElements = document.getElementsByClassName("indexButtonLand");
-var homeElements = document.getElementsByClassName("indexButtonHome");
 
-document.getElementById("EmailInput").style.visibility="hidden";
-window.onload = function(){
-    
-
-    if(checkLocalStorage()){
-        for(var index = 0; index++; index<landElements.length){
-            landElements[index].style.visible = false;
-        }
-    } else {
-        for(var index = 0; index++; index<landElements.length){
-            homeElements[index].style.visible = false;
-        }
-    }
-}
-
-
-//Landing stuff
-var isLanding = false;
-
-//Auto Button event logic
 AutoSpeaker.onclick = function(){
     AutoPlay.push("Speaker");
     updateAuto();
+}
+
+document.getElementById("sumbitButton").onclick = function(){
     uploadStand();
+    //location.reload()
 }
 
 AutoAmp.onclick = function(){
@@ -53,7 +35,6 @@ AutoAmp.onclick = function(){
 }
 
 AutoClear.onclick = function(){
-    console.log("autoclear");
     AutoPlay=[];
     updateAuto();
 }
@@ -64,7 +45,6 @@ AutoRemove.onclick = function(){
 }
 
 LeftZone.onchange = function(){
-    console.log(LeftZone.value);
     updateAuto();
 }
 
@@ -73,7 +53,8 @@ function updateAuto(){
     AutoMoves.value="NumMoves: "+AutoPlay.length;
     updateAutoText();
     AutoScore = updateAutoScore();
-    AutoScoreText.value="Score: "+AutoScore;
+    AutoScoreText.value = "Score: "+AutoScore;
+    totalScoreUpdate();
 }
 
 //Updates the textarea to show all moves
@@ -101,7 +82,6 @@ function updateAutoScore(){
         score+=2;
     }
     for(i = 0; i<AutoPlay.length; i++){
-        console.log(score);
         if(AutoPlay[i]=="Speaker"){
             score+=5;
             AutoSpeakerNum++;
@@ -150,7 +130,6 @@ TeleAmpSpeaker.onclick = function(){
 
 
 TeleClear.onclick = function(){
-    console.log("autoclear");
     TelePlay=[];
     updateTele();
 }
@@ -166,6 +145,7 @@ function updateTele(){
     updateTeleText();
     TeleScore = updateTeleScore();
     TeleScoreText.value="Score: "+TeleScore;
+    totalScoreUpdate();
 }
 
 //Updates the textarea to show all moves
@@ -186,7 +166,6 @@ function updateTeleText(){
 
 //Updates the auto scoore
 function updateTeleScore(){
-    console.log(TelePlay);
     score = 0;
     for(i = 0; i<TelePlay.length; i++){
         if(TelePlay[i]=="Speaker"){
@@ -199,61 +178,112 @@ function updateTeleScore(){
             TeleAmpNum++;
         }
     }
-    console.log(TeleSpeakerNum+" "+TeleAmpNum+" "+TeleAmpedSpeakerNum);
     return score;
 }
 
-function checkNoteThrow(){
-    
+function totalScoreUpdate(){
+    totalScore=AutoScore+TeleScore+endgameScore;
+    document.getElementById("scoreShow").value="Total Points Scored: "+totalScore;
 }
-
-// The submit function copied from the past one
 
 function uploadStand() {
-    //e.preventDefault();
-      fetch('https://corsproxy.io/?http://98.59.100.219:3082/matchinput', {
-         method: 'POST',
-         headers: {'Content-Type':"application/json;charset=UTF-8"}, 
-         body: JSON.stringify({
-            "username": localStorage.getItem('username'),
-            "email": localStorage.getItem('email'),
-            "password": localStorage.getItem('password'), // should be hashed
-            "scoutname": "ojodfh",
-            "team": document.getElementById('TeamNumber').value,
-            "matchNumber": document.getElementById('MatchNumber').value,
-            "alliance": document.getElementById("AllianceSelector").value,
-            "autoAmpPoints": AutoAmpNum,
-            "autoSpeakerPoints": AutoSpeakerNum,
-            "autoLeftZone": document.getElementById("leftZoneSelector").value == false ? false : true,
-            "teleAmpPoints": TeleAmpNum, //int
-            "teleSpeakerPoints": TeleSpeakerNum, //int
-            "teleSpeakerAmplifiedNotes": TeleAmpedSpeakerNum, //int
-            "drops": document.getElementById("dropIn"), // int
-            "climbed": true, // boolean 
-            "parked": true, // boolean
-            "trap": true, // boolean?
-            "offeredcoop": true, // boolean
-            "didcoop": true, // boolean
-            "ampmike": true, // boolean
-            "sourcemike": true, // boolean
-            "centermike": true, // boolean
-            "harmony": true // boolean
-         })}).then(result => console.log('success====:', result))
-         .catch(error => console.log('error============:', error));
+    let data = {
+        "scoutname":localStorage.getItem("Name"),
+        "teamnumber":document.getElementById("TeamNumber").value.toString(),
+        "matchnumber":document.getElementById("MatchNumber").value.toString(),
+        "alliance":document.getElementById("AllianceSelector").value,
+        "autoamppoints":AutoAmpNum,
+        "autospeakerpoints":AutoSpeakerNum,
+        "autoleftzone":document.getElementById("leftZoneSelector").value == "false" ? false : true,
+        "teleamppoints":TeleAmpNum,
+        "telespeakerpoints" :TeleSpeakerNum,
+        "telespeakeramplifiedpoints":TeleAmpedSpeakerNum,
+        "drops":document.getElementById("dropIn").value != ""?document.getElementById("dropIn").value:0,
+        "climbed": document.getElementById("climbCheckBox").checked,
+        "parked": document.getElementById("ParkCheckbox").checked,
+        "harmony": document.getElementById("harmonyCheckBox").checked,
+        "trap": document.getElementById("trapNumID").value,
+        "offeredcoop": document.getElementById("offerCoopID").value == "false" ? false:true,
+        "didcoop": document.getElementById("didCoopID").value == "false" ? false:true,
+        "ampmike": document.getElementById("ampMikeSelector").value == "miss" ? false:true,
+        "sourcemike": document.getElementById("sourceMikeSelector").value == "miss" ? false:true,
+        "centermike": document.getElementById("centerMikeSelector").value == "miss" ? false:true,
+        "numtraps": document.getElementById("trapNumID").value,
+        "extranotes": document.getElementById("Extra Notes").value
+    }
+    console.log(data);
 }
 
-// Save stuff to localStorage
+var endgameScore = 0;
+var ParkCheckbox = document.getElementById("ParkCheckbox");
+var ClimbCheckBox = document.getElementById("climbCheckBox");
+var HarmonyCheckBox = document.getElementById("harmonyCheckBox");
+var TrapSelector = document.getElementById("TrapSelector");
+var trapNumber = document.getElementById("trapNumID");
+var selectorOne = document.getElementById("ampMikeSelector");
+var selectorTwo = document.getElementById("sourceMikeSelector");
+var selectorThree = document.getElementById("centerMikeSelector");
 
-function saveToLocalStorage(email, username, password, name) {
-    localStorage.setItem('email', email);
-    localStorage.setItem('username', username);
-    localStorage.setItem('password', password);
-    localStorage.setItem('name', name);
+selectorOne.onchange = function(){
+    updateEnd();
 }
 
-// Check localStorage for login data, return true/false
-function checkLocalStorage() {
-    return localStorage.getItem('email') != null && 
-        localStorage.getItem('username') != null &&
-        localStorage.getItem('password') != null;
+selectorTwo.onchange = function(){
+    updateEnd();
+}
+
+selectorThree.onchange = function(){
+    updateEnd();
+}
+
+ParkCheckbox.onchange = function(){
+    updateEnd();
+}
+
+ClimbCheckBox.onchange = function(){
+    updateEnd();
+}
+
+HarmonyCheckBox.onchange = function(){
+    updateEnd();
+}
+
+TrapSelector.onchange = function(){
+    updateEnd();
+}
+
+trapNumber.onchange = function(){
+    updateEnd();
+}
+
+function updateEnd(){
+    endgameScore=(trapNumber.value==""?0:trapNumber.value)*5;
+    stageCalc();
+    console.log(endgameScore);
+    totalScoreUpdate();
+}
+
+function stageCalc(){
+    console.log(isLit());
+    if(HarmonyCheckBox.checked){
+        endgameScore+=2;
+    }
+
+    if(ClimbCheckBox.checked){
+        if(isLit()){
+            endgameScore+=4;
+            return;
+        }
+        endgameScore+=3;
+    }
+
+    if(ParkCheckbox.checked){
+        endgameScore+=1;
+    }
+}
+
+function isLit(){
+    return document.getElementById("ampMikeSelector").value == "Score"
+    || document.getElementById("sourceMikeSelector").value == "Score"
+    || document.getElementById("centerMikeSelector").value == "Score";
 }
