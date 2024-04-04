@@ -1,4 +1,4 @@
-src= "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+//src= "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
 
 
 var totalScore = 0;
@@ -28,7 +28,7 @@ AutoSpeaker.onclick = function(){
 }
 
 document.getElementById("sumbitButton").onclick = function(){
-    uploadStand();
+    GenerateQRCode();
     //location.reload()
 }
 
@@ -189,7 +189,7 @@ function totalScoreUpdate(){
     document.getElementById("scoreShow").value="Total Points Scored: "+totalScore;
 }
 
-function uploadStand() {
+/*function uploadStand() {
     let data = {
         "scoutname":localStorage.getItem("Name"),
         "teamnumber":document.getElementById("TeamNumber").value.toString(),
@@ -217,7 +217,7 @@ function uploadStand() {
     console.log(data);
     //sendData("https://cors-proxy.htmldriven.com/?url=http://98.59.100.219/matchinput", JSON.stringify(data));
 }
-
+*/
 var endgameScore = 0;
 var ParkCheckbox = document.getElementById("ParkCheckbox");
 var ClimbCheckBox = document.getElementById("climbCheckBox");
@@ -290,6 +290,44 @@ function isLit(){
     return document.getElementById("ampMikeSelector").value == "Score"
     || document.getElementById("sourceMikeSelector").value == "Score"
     || document.getElementById("centerMikeSelector").value == "Score";
+}
+
+function GenerateQRCode() {
+    /*let qrcodeContainer = document.getElementById('qrcode-div');
+    qrcodeContainer.innerHTML = "";*/
+    new QRCode(document.getElementById('qrcode-div'), {
+          text: JSON.stringify({
+            "scoutname":localStorage.getItem("Name"),
+            "teamnumber":document.getElementById("TeamNumber").value.toString(),
+            "matchnumber":document.getElementById("MatchNumber").value.toString(),
+            "alliance":document.getElementById("AllianceSelector").value,
+            "autoamppoints":AutoAmpNum,
+            "autospeakerpoints":AutoSpeakerNum,
+            "autoleftzone":document.getElementById("leftZoneSelector").value == "false" ? false : true,
+            "teleamppoints":TeleAmpNum,
+            "telespeakerpoints" :TeleSpeakerNum,
+            "telespeakeramplifiedpoints":TeleAmpedSpeakerNum,
+            "drops":document.getElementById("dropIn").value != ""?document.getElementById("dropIn").value:0,
+            "climbed": document.getElementById("climbCheckBox").checked,
+            "parked": document.getElementById("ParkCheckbox").checked,
+            "harmony": document.getElementById("harmonyCheckBox").checked,
+            "trap": document.getElementById("trapNumID").value,
+            "offeredcoop": document.getElementById("offerCoopID").value == "false" ? false:true,
+            "didcoop": document.getElementById("didCoopID").value == "false" ? false:true,
+            "ampmike": document.getElementById("ampMikeSelector").value == "miss" ? false:true,
+            "sourcemike": document.getElementById("sourceMikeSelector").value == "miss" ? false:true,
+            "centermike": document.getElementById("centerMikeSelector").value == "miss" ? false:true,
+            "numtraps": document.getElementById("trapNumID").value,
+            "extranotes": document.getElementById("Extra Notes").value
+        }),
+          width: 256,
+          height: 256,
+          colorDark: "#5868bf",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H
+    });
+console.log('runs');
+document.getElementById("qrcode-container").style.display = "block"
 }
 
 // not using this anymore for obvious reasons
