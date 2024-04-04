@@ -212,6 +212,7 @@ function uploadStand() {
         "extranotes": document.getElementById("Extra Notes").value
     }
     console.log(data);
+    sendData("https://thingproxy.freeboard.io/fetch/http://98.59.100.219/matchinput", JSON.stringify(data));
 }
 
 var endgameScore = 0;
@@ -287,3 +288,23 @@ function isLit(){
     || document.getElementById("sourceMikeSelector").value == "Score"
     || document.getElementById("centerMikeSelector").value == "Score";
 }
+
+async function sendData(url, data) {
+    try {
+      const response = await fetch(url, {
+        method: 'POST', // Use POST for sending data
+        headers: { 'Content-Type': 'application/json' },
+        body: data
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+  
+      console.log('Data sent successfully!');
+    } catch (error) {
+      console.error('Error sending data:', error);
+    }
+}
+  
+ 

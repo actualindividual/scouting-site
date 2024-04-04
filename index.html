@@ -8,8 +8,8 @@
 </head>
 <body>
 	<div id="navBar">
-		<a href="MatchScouting.html" id="item3">Match Scouting<a> |
-		<a href="PitScouting.html" id="item4">Pit Scouting<a></a>
+		<!-- <a href="MatchScouting.html" id="item3">Match Scouting<a> -->
+		<!-- <a href="PitScouting.html" id="item4">Pit Scouting<a></a> -->
 	</div>
 	<div id="contentIndex">
 		<h1>Welcome To</h1>
@@ -30,34 +30,34 @@
 	}
 
 	document.getElementById("sumbitButtonIndex").onclick = function(){
-		localStorage.setItem("Username", document.getElementById("UsernameInput").value);
-		localStorage.setItem("Email", document.getElementById("EmailInput").value);
+		// localStorage.setItem("Username", document.getElementById("UsernameInput").value);
+		// localStorage.setItem("Email", document.getElementById("EmailInput").value);
 		localStorage.setItem("Name", document.getElementById("NameInput").value);
-		localStorage.setItem("Password", document.getElementById("PasswordInput").value);
+		// localStorage.setItem("Password", document.getElementById("PasswordInput").value);
 		its1am();
 	}
 	
 	function its1am(){
-		console.log(localStorage.getItem('Name'));
+		console.log(localStorage.getItem('name'));
 		if(localStorage.getItem('Name') == null){
 			document.getElementById("item1").style.display="none";
 			document.getElementById("item2").style.display="none";
-			document.getElementById("item3").style.display="none";
-			document.getElementById("item4").style.display="none";
-			document.getElementById("UsernameInput").style.display="inline-block";
-			document.getElementById("EmailInput").style.display="inline-block";
+			// document.getElementById("item3").style.display="none";
+			// document.getElementById("item4").style.display="none";
+			// document.getElementById("UsernameInput").style.display="inline-block";
+			// document.getElementById("EmailInput").style.display="inline-block";
 			document.getElementById("NameInput").style.display="inline-block";
-			document.getElementById("PasswordInput").style.display="inline-block";
+			// document.getElementById("PasswordInput").style.display="inline-block";
 			document.getElementById("sumbitButtonIndex").style.display="inline-block";
 		} else {
 			document.getElementById("item1").style.display="inline-block";
 			document.getElementById("item2").style.display="inline-block";
-			document.getElementById("item3").style.display="inline-block";
-			document.getElementById("item4").style.display="inline-block";
-			document.getElementById("UsernameInput").style.display="none";
-			document.getElementById("EmailInput").style.display="none";
+			// document.getElementById("item3").style.display="inline-block";
+			// document.getElementById("item4").style.display="inline-block";
+			// document.getElementById("UsernameInput").style.display="none";
+			// document.getElementById("EmailInput").style.display="none";
 			document.getElementById("NameInput").style.display="none";
-			document.getElementById("PasswordInput").style.display="none";
+			// document.getElementById("PasswordInput").style.display="none";
 			document.getElementById("sumbitButtonIndex").style.display="none";
 		}
 	}
