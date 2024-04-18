@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" 
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+	<title>Match Scouting</title>
+	<link rel="stylesheet" type="text/css" href="ScoutingStyle.css">
+</head>
+<body>
+	<div id="navBar">
+		<a href="index.html">Home<a> |
+		<a href="PitScouting.html">Pit Scouting<a>
+	</div>
+	<div  id="contentMatch">
+		<h1>Match Scouting</h1>
+		<div class="formSection" id="TeamInfoDiv">
+			<h2>Team Info</h2>
+			<div>
+				<input type="text" value="Team Number" class="TeamDisplayInfo" readonly>
+				<input type="number" class="numberInput" id="TeamNumber">
+			</div>
+			<div>
+				<input type="text" value="Match Number" class="TeamDisplayInfo" readonly>
+				<input type="number" class="numberInput" id="MatchNumber">
+			</div>
+			<div>
+				<input type="text" value="A1lliance" class="TeamDisplayInfo" readonly>
+                <select id="AllianceSelector" class="numberInput">
+                    <option value="blue">Blue</option>
+                    <option value="red">Red</option>
+                </select>
+			</div>
+		</div>
+		<div class="formSection" id="AutoInfoDiv">
+			<h2>Auto</h2>
+			<div>
+				<input type="button" value="Score Option 1" class="AutoDisplayInput" id="AutoSpeaker">
+				<input type="button" value="Score Option 2" class="AutoDisplayInput" id="AutoAmp">
+			</div>
+			<div>
+				<input type="text" value="NumMoves: 0" class="AutoDisplayInput" id="AutoNumMoveDis" readonly>
+				<input type="text" value="Score: 0" class="AutoDisplayInput"  id="AutoScoreDis" readonly>
+			</div>	
+			<textarea id="AutoPlay" readonly></textarea>
+			<div>
+				<input type="button" value="Clear" class="AutoDisplayInput" id="AutoClear">
+				<input type="button" value="Remove" class="AutoDisplayInput" id="AutoRemove">
+			</div>
+			<div>
+				<input type="text" value="Left Zone" class="TeamDisplayInfo" readonly>
+				<select id="leftZoneSelector" class="numberInput">
+					<option value="false">False</option>
+					<option value="true">True</option>
+				</select>
+			</div>
+		</div>
+		<div class="formSection" id="CoOpertitionInfoDiv">
+			<h2>Dropdowns</h2>
+			<div>
+				<input type="text" value="Dropdown 1" class="CoOpInfoDisplay" readonly>
+                <select id="offerCoopID" class="SelectorInfo">
+                    <option value="false">False</option>
+                    <option value="true">True</option>
+                </select>
+			</div>
+			<div>
+				<input type="text" value="Dropdown 2" class="CoOpInfoDisplay" readonly>
+                <select id="didCoopID" class="SelectorInfo">
+                    <option value="false">False</option>
+                    <option value="true">True</option>
+                </select>
+			</div>
+		</div>
+		<div class="formSection">
+			<h2>
+				Tele-op
+			</h2>
+			<div>
+				<input type="button" value="Score Option 1" class="TeleDisplayInfo" id="teleSpeaker">
+				<input type="button" value="Score Option 2" class="TeleDisplayInfo" id="teleAmp">
+			</div>
+			<input type="button" value="Score Option 3" class="TeleDisplayInfo" id="teleAmpSpeaker">
+			<div>
+				<input type="text" value="NumMoves: 0" class="TeleDisplayInfo" id="teleMoves" readonly>
+				<input type="text" value="Score: 0" class="TeleDisplayInfo" id="teleScore" readonly>
+			</div>	
+			<textarea readonly id="teleText"></textarea>
+			<div>
+				<input type="button" value="Clear" class="TeleDisplayInfo" id="teleClear">
+				<input type="button" value="Remove" class="TeleDisplayInfo" id="teleRemove">
+			</div>
+			<div>
+				<input type="text" value="Drops" class="TeleDisplayInfo" readonly>
+				<input type="number" class="numberInput" id="dropIn">
+			</div>
+		</div>
+		<div class="formSection">
+			<h2>
+				Endgame
+			</h2>
+			<div>
+				<input type="text" value="Endgame 1" class="EndGameDisplayInfo" readonly>
+				<input type="checkbox" id="ParkCheckbox" class="endCheckBox">
+			</div>
+			<div>
+				<input type="text" value="Endgame 2" class="EndGameDisplayInfo" readonly>
+				<input type="checkbox" class="endCheckBox" id="climbCheckBox">
+			</div>
+			<div>
+				<input type="text" value="Endgame 3" class="EndGameDisplayInfo" readonly>
+				<input type="checkbox" class="endCheckBox" id="harmonyCheckBox">
+			</div>
+			<!--<div>
+				<input type="text" value="Trap" class="EndGameDisplayInfo" id="TrapSelectorInfo" readonly>
+				<select class="SelectorInfo" id="TrapSelector">
+					<option value="Not Attempted">Not Attempted</option>
+					<option value="No">No</option>
+					<option value="Yes">Yes</option>
+				</select>
+			</div> 
+			<div>
+				<input type="text" value="Traps:" class="EndGameDisplayInfo" readonly>
+				<input type="number" class="numberInput" id="trapNumID">
+			</div> -->
+		</div>
+		<!--<div class="formSection" id="HumanPlayerInfoDiv">
+			<h2>
+				Human Player
+			</h2>
+			<div>
+				<input type="text" value="Amp Mike" class="HumanDisplayInfo" readonly>
+				<select class="SelectorInfo" id="ampMikeSelector">
+					<option value="Miss">Miss</option>
+					<option value="Score">Score</option>
+				</select>
+			</div>
+			<div>
+				<input type="text" value="Source Mike" class="HumanDisplayInfo" readonly>
+				<select class="SelectorInfo" id="sourceMikeSelector">
+					<option value="Miss">Miss</option>
+					<option value="Score">Score</option>
+				</select>
+			</div>
+			<div>
+				<input type="text" value="Center Mike" class="HumanDisplayInfo" readonly>
+				<select class="SelectorInfo" id="centerMikeSelector">
+					<option value="Miss">Miss</option>
+					<option value="Score">Score</option>
+				</select>
+			</div>
+		</div> -->
+		<div class="formSection" id="AutoInfoDiv">
+			<h2>Extra Notes</h2>
+			<textarea id="Extra Notes"></textarea>
+		</div>
+		<div class="formSection">
+			<h2>
+				Game Score
+			</h2>
+			<input type="text", value="Total Points Scored: 0", class="TeamDisplayInfo", id="scoreShow", readonly>
+		</div>
+		<div class="formSection">
+			<input type="button", value="Submit" class="TeamDisplayInfo", id="sumbitButton" onclick="GenerateQRCode()">
+		</div>
+		<div id="qrcode-div" class="qrcode">
+			
+		</div>
+	</form>
+<script src="MatchScouting.js"></script>
+<script src="libs/qrcode.js"></script>
+</html>
