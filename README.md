@@ -71,6 +71,7 @@ The calculated match score for the robot.
 QR code handling is done by the QRCodeJS library, as mentioned before. The GenerateQRCode  
 function in MatchScouting.js takes all inputs from the page and converts them into a JSON  
 string. It then creates a QR code with that JSON data, which is then displayed on the page.  
+The library is located in the libs/ folder.
 ## Making it work for you
 All of the keys and values can and should be changed to fit your implementation. 
 </details>
