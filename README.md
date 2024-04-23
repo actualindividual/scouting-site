@@ -5,7 +5,9 @@ It uses the [QRCodeJS](https://davidshimjs.github.io/qrcodejs/) library to gener
 
 
 ---
-# How it is used
+
+<details>
+<summary><h1> How it is used </h1></summary>
 
 This site consists of a variety of input options. Here they are, as well as how they  
 were used for the 2024 season.
@@ -57,3 +59,18 @@ A big text input. This was used in 2024 for other stuff the scouter wanted to sa
 ![image 7](.photos/7.png)
 
 The calculated match score for the robot.
+
+</details>
+
+---
+
+<details>
+  <summary><h1>QR Codes</h1></summary>
+
+## The library and generator function
+QR code handling is done by the QRCodeJS library, as mentioned before. The GenerateQRCode  
+function in MatchScouting.js takes all inputs from the page and converts them into a JSON  
+string. It then creates a QR code with that JSON data, which is then displayed on the page.  
+## Making it work for you
+All of the keys and values can and should be changed to fit your implementation. 
+</details>
